@@ -1,4 +1,3 @@
-
 body{
     width: 100%;
     margin: 0;
@@ -13,6 +12,7 @@ h2{
     font-family: "Baloo Bhaina 2", sans-serif;
     font-size: 20px;
 }
+
 .headertop{
     background-image: url(img/Union.png);
     display: flex;
@@ -61,11 +61,11 @@ h2{
 .searchbar{
     display: flex;
     justify-content: space-between;
-    width: 280px;
+    width: 360px;
 }
 .search{
     display: flex;
-    width: 210px;
+    width: 260px;
     border: 2px solid gray;
     border-radius: 25px;
     height: 50px;
@@ -91,7 +91,7 @@ h2{
     background-color: #0F83B2; 
 }
 .search input{
-    width: 150px;
+    width: 200px;
     padding-left: 9px;
     border-radius: 25px;
     height: 48px;
@@ -125,6 +125,17 @@ h2{
 .cardmenu{
     display: flex;   
     justify-content: space-between; 
+    padding-right: 40px;
+    width: auto;
+}
+.cardmenu_2{
+    display: flex;
+    gap: 30px;
+    width: 250px;
+}
+.cardmenu_2 img{
+    width: 30px;
+    height: 30px;
 }
 .container-card {
     display: flex;
@@ -135,11 +146,9 @@ h2{
 .container-card  h4,p{
     margin: 0;
     padding: none;
-
 }
 .container-card  h4{
     font-weight: normal;
-    
 }
 .card1{
     background-image: url(toppicks/image\ 11.png);
@@ -166,19 +175,13 @@ h2{
     width: 20px;
     height: 20px;
     opacity: 0.4;
-   
-    
 }
-
-
-
 footer{
     background-image: url(img/Footer\ \(1\).png);
     background-repeat: no-repeat;
     background-size: cover;
     height: 560px;
-    width: 100% ;
-    
+    width: 100% ; 
     align-self: center;
     justify-content: center;
     display: flex;
@@ -209,6 +212,18 @@ footer{
     }
     
 }
+@media (max-width: 480px) {
+    .logo img{
+        width: 100px;
+    }
+    
+}
+@media (max-width: 480px) {
+    .searchbar{
+        width: 300px;
+    }
+    
+}
 @media (max-width: 768px) {
     .searchbar img{
         display: none;
@@ -228,8 +243,20 @@ footer{
     
 }
 @media (max-width: 400px) {
+    .logo img{
+        width: 80px;
+    }
+    
+}
+@media (max-width: 400px) {
     .logo{
-        width: 125px;
+        padding: 9px;
+    }
+    
+}
+@media (max-width: 400px) {
+    .search input{
+        width: 200px;
     }
     
 }
@@ -330,15 +357,20 @@ footer{
   }
 }
 @media screen and (width <= 576px) {
+   .cardmenu p{
+  display: none;
+  }
+}
+@media screen and (width <= 576px) {
    footer{
     background-color: antiquewhite;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-align-items: center;
-align-self: center;
-font-size: 10px;
-max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    font-size: 10px;
+    max-height: 800px;
   }
 }
 @media screen and (width <= 576px) {
@@ -376,6 +408,8 @@ max-height: 800px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
 @media screen and (width <= 992px) {
    .cardlist{
     display: grid;
@@ -444,4 +478,195 @@ max-height: 800px;
    .cards h1{
   font-size: 19px;
   }
+}
+
+.imgjs img{
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-color: transparent;
+    object-fit: contain;
+}
+.imgjs{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    justify-content: center;
+}
+.starjs{
+    display: flex;
+    gap: 5px;
+}
+.starjs img{
+    width: 15px;
+    height: 15px;
+}
+.disjs{
+    display: grid;
+    padding: 10px 25px ;
+    grid-template-columns: auto auto auto auto ;
+    justify-content: space-between;
+}
+.disjs4{
+    display: grid;
+    padding: 10px 25px ;
+    grid-template-columns: auto auto auto auto ;
+    justify-content: space-between;
+}
+.cardjs{
+    width: 200px;
+    height: 300px;
+    /* border: 1px solid grey; */
+    
+    
+}
+
+.rate{
+  
+     font-family: "Poppins", sans-serif;
+     font-weight: 600;
+}
+
+.oldrate {
+    display: flex;
+    color:gray;
+    font-size: 12px;
+    text-decoration: line-through;
+     font-family: "Poppins", sans-serif;
+   align-items: center;
+    font-weight: 500;
+}
+.oldrate p{
+    font-size: 12px;
+    font-weight: bold;
+}
+.cardoff{
+    color: #25BF0C;
+    font-weight: 600;
+     font-family: "Poppins", sans-serif;
+}
+.cardrate{
+    display: flex;
+    gap: 5px;
+    font-family: "Poppins", sans-serif;
+}
+.botjs h3{
+    margin: 0;
+    padding: none;
+    
+    font-size: 13px;
+}
+.botjs{
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 15px;
+    row-gap: 5px;
+    width: 190px;
+    font-family: "Comfortaa", sans-serif;
+}
+
+.heartjs{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0.5;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.heartjs:hover {
+  opacity: 1;
+}
+.heartjs img{
+    width: 15px;
+    height: 15px;
+}
+
+@media screen and (width <= 768px) {
+    .disjs{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+         width: 200px;
+        justify-content: center;
+    }
+}
+@media screen and (width <= 992px) {
+    .disjs{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 200px;
+        justify-content: center;
+    }
+}
+@media screen and (width <= 576px) {
+    .cardjs{
+        display: grid;
+        
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(1, 1fr);
+       
+    }
+}
+@media screen and (width <= 768px) {
+    .disjs{
+        display: grid;
+        row-gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        
+    }
+}
+@media screen and (width <= 576px) {
+    .disjs{
+        display: grid;
+        row-gap: 30px;
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
+
+}
+
+@media screen and (width <= 906px) {
+    .toy{
+        display: grid;
+       grid:1;
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
+}
+
+.categories2 button{
+    color: white;
+    background-color: #0F83B2;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    align-self: flex-end;
+}
+
+
+.perfrcttoys{
+     display: flex;
+    justify-content: space-between;
+}
+.toy-img img{
+    width: 150px;
+    height: 150px;
+}
+/* .pertoy{
+    width: 150px;
+    height: 200px;
+} */
+
+.toy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.toy-img{
+    padding: 25px ;
 }
