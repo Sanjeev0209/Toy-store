@@ -143,23 +143,23 @@ carddetails.forEach((item) => {
 const perfecttoy=[
 {
     id:1,
-    img:"/perfecttoy/Isolation_Mode.png",
+    img:"perfecttoy/Isolation_Mode.png",
     name:"Playsets"
 },{
     id:2,
-    img:"/perfecttoy/Isolation_Mode (1).png",
+    img:"perfecttoy/Isolation_Mode (1).png",
     name:"Control toys"
 },{
     id:3,
-    img:"/perfecttoy/Isolation_Mode (2).png",
+    img:"perfecttoy/Isolation_Mode (2).png",
     name:"Educational toys"
 },{
     id:4,
-    img:"/perfecttoy/Isolation_Mode (3).png",
+    img:"perfecttoy/Isolation_Mode (3).png",
     name:"Eco Friendly toys"
 },{
     id:5,
-    img:"/perfecttoy/Group 53.png",
+    img:"perfecttoy/Group 53.png",
     name:"Stuffed toys"
 }
 ]
