@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby-Toy-Store</title>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    >
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,12 +129,51 @@
          <div class="section7">
         <h2 style="text-align: center;">Recent Photoshoots</h2>
         <p style="text-align: center;">Check Gallery</p><br></div>
-        <div class="section7_2">
-            <img src="img/Rectangle 23.png" alt="" width="360px" height="360px">
-        <img src="img/Rectangle 24.png" alt="" width="360px" height="360px">
-        <img src="img/Rectangle 25.png" alt="" width="360px" height="360px">
-        <img src="img/Rectangle 26.png" alt="" width="360px" height="360px">
+        
+    <div class="swiper mySwiper">
+
+        <div class="swiper-wrapper">
+
+
+            <div class="swiper-slide">
+                <img src="img/Rectangle 23.png" alt="">
+            </div>
+
+
+            <div class="swiper-slide">
+                <img src="img/Rectangle 24.png" alt="">
+            </div>
+
+
+            <div class="swiper-slide">
+                <img src="img/Rectangle 25.png" alt="">
+            </div>
+
+
+            <div class="swiper-slide">
+                <img src="img/Rectangle 26.png" alt="">
+            </div>
+
+
         </div>
+
+
+        <!-- Previous Button -->
+
+        <div class="swiper-button-prev"></div>
+
+
+        <!-- Next Button -->
+
+        <div class="swiper-button-next"></div>
+
+
+        <!-- Dots -->
+
+        <div class="swiper-pagination"></div>
+
+    </div>
+
         
     </section><br><br><br>
     <section >
@@ -199,6 +242,65 @@
             </div>
         </div>
     </footer>
+     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="script.js"></script>
 </body>
-<script src="script1.js"></script>
+<script>
+
+        const swiper = new Swiper(".mySwiper", {
+
+            /* Show 2 images */
+
+            slidesPerView: 2,
+
+            spaceBetween: 10,
+
+
+            /* Infinite loop */
+
+            loop: true,
+
+
+            /* Auto slide */
+
+            autoplay: {
+
+                delay: 3000,
+
+                disableOnInteraction: false
+
+            },
+
+
+            /* Slow movement */
+
+            speed: 1500,
+
+
+            /* Previous / Next */
+
+            navigation: {
+
+                nextEl: ".swiper-button-next",
+
+                prevEl: ".swiper-button-prev"
+
+            },
+
+
+            /* Dots */
+
+            pagination: {
+
+                el: ".swiper-pagination",
+
+                clickable: true
+
+            }
+
+        });
+
+    </script>
+
 </html>

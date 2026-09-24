@@ -9,6 +9,7 @@ const carddetails =[
         oldrate:"$39.00",
         star: "svg/Vector (1).png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     },
     {
@@ -21,6 +22,7 @@ const carddetails =[
         oldrate:"$39.00",
         star:"svg/Vector.png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     },
      {
@@ -33,6 +35,7 @@ const carddetails =[
         oldrate:"",
         star:"svg/Vector (1).png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     },
      {
@@ -45,6 +48,7 @@ const carddetails =[
         oldrate:"",
         star:"svg/Vector.png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     },
      {
@@ -57,6 +61,7 @@ const carddetails =[
         oldrate:"$39.00",
         star:"svg/Vector (1).png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     },
      {
@@ -69,6 +74,7 @@ const carddetails =[
         oldrate:"",
         star:"svg/Vector.png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     },
      {
@@ -81,6 +87,7 @@ const carddetails =[
         oldrate:"$39.00",
         star:"svg/Vector (1).png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     },
      {
@@ -94,6 +101,7 @@ const carddetails =[
         rateColor:"red",
         star:"svg/Vector.png",
         heart: "svg/heart.svg",
+        liked:false,
         cart:"svg/shopping-cart.svg"
     }
      
@@ -110,7 +118,10 @@ carddetails.forEach((item) => {
      ${item.sale ? `<div class="salejs">SALE</div>` : ""}
         <img src="${item.imgback}" alt="">
         <div class="heartjs">
-            <img src="${item.heart}" alt="">
+           <img
+                                    src="${isLiked ? item.heartFill : item.heart}"
+                                    alt="Like"
+                                >
             <img src="${item.cart}" alt="">
         </div>
     </div><br>
@@ -140,45 +151,9 @@ carddetails.forEach((item) => {
 
 
 
-const perfecttoy=[
-{
-    id:1,
-    img:"perfecttoy/Isolation_Mode.png",
-    name:"Playsets"
-},{
-    id:2,
-    img:"perfecttoy/Isolation_Mode (1).png",
-    name:"Control toys"
-},{
-    id:3,
-    img:"perfecttoy/Isolation_Mode (2).png",
-    name:"Educational toys"
-},{
-    id:4,
-    img:"perfecttoy/Isolation_Mode (3).png",
-    name:"Eco Friendly toys"
-},{
-    id:5,
-    img:"perfecttoy/Group 53.png",
-    name:"Stuffed toys"
-}
-]
 
-const perfect = document.getElementById('toy');
 
-perfecttoy.forEach((item) => {
-    const cardHTML =`
-    <div class="perfrcttoys">
-        <div class="toy-img">
-            <img src="${item.img}" alt="">
-            <p class="">${item.name}</p>
-        </div>
-</div>
-    `
-     perfect.innerHTML += cardHTML;
 
-}
-)
 
 const card4 =[
     {

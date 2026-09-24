@@ -573,7 +573,7 @@ footer{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    opacity: 0.5;
+    opacity: 0.8;
     transition: 0.2s;
     cursor: pointer;
 }
