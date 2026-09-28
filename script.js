@@ -13,6 +13,7 @@ const carddetails = [
         oldrate: "$39.00",
         star: "svg/Vector (1).png",
         heart: "svg/heart.svg",
+        like:"svg/heartfill.svg",
         liked: false,
         cart: "svg/shopping-cart.svg"
     },
@@ -26,6 +27,7 @@ const carddetails = [
         oldrate: "$39.00",
         star: "svg/Vector.png",
         heart: "svg/heart.svg",
+        like:"svg/heartfill.svg",
         liked: false,
         cart: "svg/shopping-cart.svg"
     },
@@ -40,6 +42,7 @@ const carddetails = [
         oldrate: "",
         star: "svg/Vector (1).png",
         heart: "svg/heart.svg",
+        like:"svg/heartfill.svg",
         liked: false,
         cart: "svg/shopping-cart.svg"
     },
@@ -53,6 +56,7 @@ const carddetails = [
         oldrate: "",
         star: "svg/Vector.png",
         heart: "svg/heart.svg",
+        like:"svg/heartfill.svg",
         liked: false,
         cart: "svg/shopping-cart.svg"
     },
@@ -67,6 +71,7 @@ const carddetails = [
         oldrate: "$39.00",
         star: "svg/Vector (1).png",
         heart: "svg/heart.svg",
+        like:"svg/heartfill.svg",
         liked: false,
         cart: "svg/shopping-cart.svg"
     },
@@ -81,6 +86,7 @@ const carddetails = [
         oldrate: "",
         star: "svg/Vector.png",
         heart: "svg/heart.svg",
+        like:"svg/heartfill.svg",
         liked: false,
         cart: "svg/shopping-cart.svg"
     },
@@ -92,6 +98,7 @@ const carddetails = [
         offer: "$29.00",
         rate: "",
         oldrate: "$39.00",
+        like:"svg/heartfill.svg",
         star: "svg/Vector (1).png",
         heart: "svg/heart.svg",
         liked: false,
@@ -108,6 +115,7 @@ const carddetails = [
         rateColor: "black",
         star: "svg/Vector.png",
         heart: "svg/heart.svg",
+        like:"svg/heartfill.svg",
         liked: false,
         cart: "svg/shopping-cart.svg"
     }
@@ -150,7 +158,7 @@ function displayMainCards() {
 
                                 <img
                                     src="${item.liked
-                                        ? "svg/heartfill.svg"
+                                        ? item.like
                                         : item.heart}"
                                     id="main-heart-${item.id}"
                                     alt="Like"

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="log.css">
+</head>
+
+<body>
+
+<div class="log">
+    <div class="signup">
+        <div class="login">
+
+            <form id="formsignup">
+
+                <input type="text" id="username"
+                       placeholder="Enter Your Name" >
+                <span id="errorname"></span>
+
+                <input type="text" id="emailid"
+                       placeholder="Enter Your Email" >
+                <span id="erroremail"></span>
+
+                <input type="number" id="phone"
+                       placeholder="Enter Your Number" >
+                <span id="errorphone"></span>
+
+                <input type="password" id="password"
+                       placeholder="Enter Your Password" >
+                <span id="errorpassword"></span>
+
+                <button type="submit">Sign-UP</button>
+
+                <p id="success"></p>
+
+                <p>
+                    Already Registered?
+                    <a href="login.html">Login</a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+const form = document.getElementById("formsignup");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const signname = document.getElementById("username").value.trim();
+    const signemail = document.getElementById("emailid").value.trim();
+    const signphone = document.getElementById("phone").value.trim();
+    const signpass = document.getElementById("password").value.trim();
+
+    const success = document.getElementById("success");
+
+    const errorsignname = document.getElementById("errorname");
+    const errorsignemail = document.getElementById("erroremail");
+    const errorsignphone = document.getElementById("errorphone");
+    const errorsignpass = document.getElementById("errorpassword");
+
+    // Clear previous errors
+    errorsignname.textContent = "";
+    errorsignemail.textContent = "";
+    errorsignphone.textContent = "";
+    errorsignpass.textContent = "";
+    success.textContent = "";
+
+    let valid = true;
+
+    // Name validation
+    if (signname === "") {
+        errorsignname.textContent = "Name is required";
+        valid = false;
+    }
+
+    // Email validation
+    if (signemail === "") {
+        errorsignemail.textContent = "Email is required";
+        valid = false;
+    }
+
+    // Phone validation
+    if (signphone === "") {
+        errorsignphone.textContent = "Phone number is required";
+        valid = false;
+    }
+
+    // Password validation
+    if (signpass === "") {
+        errorsignpass.textContent = "Password is required";
+        valid = false;
+    }
+
+    // Success
+    if (valid) {
+        success.textContent = "Registered successfully";
+
+        form.reset();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+

@@ -3,7 +3,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 a, p{
     font-family:  "Baloo Bhaina 2", sans-serif;
     font-size: 16px;
@@ -12,7 +11,6 @@ h2{
     font-family: "Baloo Bhaina 2", sans-serif;
     font-size: 20px;
 }
-
 .headertop{
     background-image: url(img/Union.png);
     display: flex;
@@ -38,6 +36,10 @@ h2{
     justify-content: flex-end;
     max-width: 165px;
     gap: 40px;
+}
+.headerlogin a{
+    text-decoration: none;
+    color: white;
 }
 .navbar{
     display: flex;
@@ -68,7 +70,7 @@ h2{
     width: 260px;
     border: 2px solid gray;
     border-radius: 25px;
-    height: 50px;
+    height: 40px;
 }
 .search img{
     width: 50px;
@@ -85,16 +87,16 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 25px;
     background-color: #0F83B2; 
 }
 .search input{
     width: 200px;
-    padding-left: 9px;
+    padding-left: 19px;
     border-radius: 25px;
-    height: 48px;
+    height: 38px;
     border: none;   
     outline: none;      
     box-shadow: none;
@@ -204,87 +206,72 @@ footer{
     .headertopleft p{
         display: none;
     }
-    
 }
 @media (max-width: 768px) {
     .menulist{
         display: none;
     }
-    
 }
 @media (max-width: 480px) {
     .logo img{
         width: 100px;
     }
-    
 }
 @media (max-width: 480px) {
     .searchbar{
         width: 300px;
     }
-    
 }
 @media (max-width: 768px) {
     .searchbar img{
         display: none;
     }
-    
 }
 @media (max-width: 768px) {
     .searchsvg img{
         display: flex;
     }
-    
 }
 @media (max-width: 768px) {
     .logo{
         padding: 25px;
-    }
-    
+    } 
 }
 @media (max-width: 400px) {
     .logo img{
         width: 80px;
     }
-    
 }
 @media (max-width: 400px) {
     .logo{
         padding: 9px;
     }
-    
 }
 @media (max-width: 400px) {
     .search input{
         width: 200px;
     }
-    
 }
 @media screen and (width <= 1024px) {
     .menulist{
         max-width: 300px;
     }
-    
 }
 @media screen and (width <= 400px) {
     .searchsvg{
        max-width: 50px;
     }
-    
 }
 @media (max-width: 768px) {
     .products{
         max-width: 250px;
     }
-    
 }
 @media (max-width: 576px) {
     .products{
         max-width: 180px;
         gap: 20px;
-        
     }
-    
 }
 @media (max-width: 476px) {
     .products{
@@ -292,60 +279,46 @@ footer{
         gap: 20px;
         padding-left: 2px;
     }
-    
 }
 @media (max-width: 476px) {
     .container-card{
         width: 170px;
-        
-       
     }
-    
 }
 @media (max-width: 450px) {
     .products{
         max-width: 180px;
-       
     }
-    
 }
 @media (max-width: 576px) {
     .categories1, .categories2, .categories3{
-        padding: 10px 10px;
-       
+        padding: 10px 10px; 
     }
-    
 }
-
 @media (max-width: 576px) {
     .categories{
         max-width: 140px;
         margin: none;
-        padding: 0;
-        
+        padding: 0;  
     }
-    
 }
 @media (max-width: 576px) {
     .categories p{
        font-size: 12px;
     }
-    
 }
 @media (max-width: 576px) {
     .categories h2{
        font-size: 14px;
     }
-    
 }
-
 @media screen and (width <= 768px) {
    .footbar{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
-@media screen and (width <= 576px) {
+@media screen and (width <= 768px) {
    .footbar{
     display:grid;
     grid-template-columns: repeat(1, 1fr);
@@ -361,7 +334,7 @@ footer{
   display: none;
   }
 }
-@media screen and (width <= 576px) {
+@media screen and (width <= 768px) {
    footer{
     background-color: antiquewhite;
     display: flex;
@@ -373,43 +346,37 @@ footer{
     max-height: 800px;
   }
 }
-@media screen and (width <= 576px) {
+@media screen and (width <= 768px) {
    .lastbar1, .lastbar2, .lastbar3 p{
-   /* width: 150px;
-   height: 150px; */
    font-family: 10px;
    margin: 0;
    padding: none;
   }
 }
-@media screen and (width <= 576px) {
+@media screen and (width <= 768px) {
    .lastbar1, .lastbar2, .lastbar3{
    gap: 10px;
    height: 160px;
   }
 }
-@media screen and (width <= 576px) {
+@media screen and (width <= 768px) {
    .lastbar2 p,h2{
    margin: 0;
    padding: none;
   }
 }
-@media screen and (width <= 576px) {
+@media screen and (width <= 768px) {
    .lastbar1 p{
    margin: 0;
    padding: none;
   }
 }
-
-
 @media screen and (width <= 992px) {
    .cardlist{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-
 @media screen and (width <= 992px) {
    .cardlist{
     display: grid;
@@ -515,25 +482,19 @@ footer{
 }
 .cardjs{
     width: 200px;
-    height: 300px;
-    /* border: 1px solid grey; */
-    
-    
+    height: 300px; 
 }
-
-.rate{
-  
-     font-family: "Poppins", sans-serif;
-     font-weight: 600;
+.rate{ 
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
 }
-
 .oldrate {
     display: flex;
     color:gray;
     font-size: 12px;
     text-decoration: line-through;
-     font-family: "Poppins", sans-serif;
-   align-items: center;
+    font-family: "Poppins", sans-serif;
+    align-items: center;
     font-weight: 500;
 }
 .oldrate p{
@@ -543,7 +504,7 @@ footer{
 .cardoff{
     color: #25BF0C;
     font-weight: 600;
-     font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 .cardrate{
     display: flex;
@@ -552,8 +513,7 @@ footer{
 }
 .botjs h3{
     margin: 0;
-    padding: none;
-    
+    padding: none;  
     font-size: 13px;
 }
 .botjs{
@@ -565,7 +525,6 @@ footer{
     width: 190px;
     font-family: "Comfortaa", sans-serif;
 }
-
 .heartjs{
     position: absolute;
     top: 12px;
@@ -604,7 +563,6 @@ footer{
 @media screen and (width <= 576px) {
     .cardjs{
         display: grid;
-        
         justify-content: center;
         align-items: center;
         grid-template-columns: repeat(1, 1fr);
@@ -615,8 +573,7 @@ footer{
     .disjs{
         display: grid;
         row-gap: 30px;
-        grid-template-columns: repeat(2, 1fr);
-        
+        grid-template-columns: repeat(2, 1fr);  
     }
 }
 @media screen and (width <= 576px) {
@@ -624,9 +581,7 @@ footer{
         display: grid;
         row-gap: 30px;
         grid-template-columns: repeat(1, 1fr);
-        
     }
-
 }
 
 @media screen and (width <= 906px) {
@@ -634,7 +589,6 @@ footer{
         display: grid;
        grid:1;
         grid-template-columns: repeat(1, 1fr);
-        
     }
 }
 
@@ -646,8 +600,6 @@ footer{
     border-radius: 20px;
     align-self: flex-end;
 }
-
-
 .perfrcttoys{
      display: flex;
     justify-content: space-between;
@@ -656,11 +608,6 @@ footer{
     width: 150px;
     height: 150px;
 }
-/* .pertoy{
-    width: 150px;
-    height: 200px;
-} */
-
 .toy{
     display: flex;
     justify-content: center;

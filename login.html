@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Test</title>
+    <link rel="stylesheet" href="log.css">
+</head>
+
+<body>
+<div class="log">
+    <div class="logincontainer">
+<div class="login">
+
+      <form id="login"> 
+        <input type="text" id="email" placeholder="Username" >
+         <input type="password" id="pass" placeholder="Password" >
+          
+          <div class="hide">
+            <label> <input type="checkbox" id="show" > Show Password 
+            </label>
+          </div> 
+          <button type="submit"> Login </button> 
+          <p id="errorMessage"><a href="register.html">Sign-up</a> </p>
+     </form>
+</div>
+    </div>
+</div>
+
+    <script>
+
+        // SHOW / HIDE PASSWORD
+        document.getElementById("show").addEventListener("change", function () {
+
+            const password = document.getElementById("pass");
+
+            if (this.checked) {
+                password.type = "text";
+            } else {
+                password.type = "password";
+            }
+
+        });
+
+
+        // LOGIN
+        document.getElementById("login").addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const username = document.getElementById("email").value.trim();
+            const password = document.getElementById("pass").value.trim();
+
+            const errorMessage = document.getElementById("errorMessage");
+
+
+            console.log("Username:", username);
+            console.log("Password:", password);
+
+
+            if (username === "admin" && password === "password123") {
+
+                errorMessage.style.color = "green";
+                errorMessage.textContent = "Login successful!";
+
+                setTimeout(function () {
+
+                    window.location.href = "index.html";
+
+                }, 1000);
+
+            } else {
+
+                errorMessage.style.color = "red";
+                errorMessage.textContent = "Invalid username or password.";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
+

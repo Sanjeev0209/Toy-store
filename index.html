@@ -25,9 +25,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Baloo+Bhaina+2:wght@400..800&family=Comfortaa:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <body>
-    
-
-    
    <header>
         <div class="headertop">
             <div class="headertopleft">
@@ -35,8 +32,8 @@
                 <p>Free  free shipping with over $150</p>
             </div>
             <div class="headerlogin">
-                <div><p>Login</p></div>
-                <div><p>Register</p></div>
+                <div><p><a href="login.html">Login</a> </p></div>
+                <div><p><a href="register.html">Register</a> </p></div>
             </div>
            
         </div>
@@ -72,12 +69,10 @@
             <h2>Find the Perfect Toy</h2>
             <p >Our Collection</p><br><br>
            <div id="toy" class="toy"></div>
-            </div>
-            
+            </div>       
     </section><br><br>
      <div id="toy" class="toy"></div>
-    <section >
-        
+    <section >   
         <div class="section3">
             <div class="section3_1">
                 <h2>Top picks for your littlt ones</h2>
@@ -88,9 +83,6 @@
                 </div>
             </div>
             <div><div id="card" class="disjs"></div></div>
-            
-            
-
         </div>
     </section>
     <br><br>
@@ -107,11 +99,9 @@
                 <div >
                     <p>Popular <span>  </span> product</p>
                      <div id="card4" class="disjs"></div>
-                </div><br>
-                
+                </div><br>           
             </div>
-           </div>
-        
+           </div>  
     </section><br><br>
     <section >
         <div class="section6">
@@ -121,60 +111,35 @@
             <img src="img/Group 38.png" alt="" width="400px" height="216px">
         <img src="img/Group 39.png" alt="" width="400px" height="216px">
         <img src="img/Group 40.png" alt="" width="400px" height="216px">
-        </div>
-        
+        </div>    
         </div>
     </section><br><br>
     <section >
          <div class="section7">
         <h2 style="text-align: center;">Recent Photoshoots</h2>
-        <p style="text-align: center;">Check Gallery</p><br></div>
-        
+        <p style="text-align: center;">Check Gallery</p><br></div>   
     <div class="swiper mySwiper">
-
         <div class="swiper-wrapper">
-
-
             <div class="swiper-slide">
                 <img src="img/Rectangle 23.png" alt="">
             </div>
-
-
             <div class="swiper-slide">
                 <img src="img/Rectangle 24.png" alt="">
             </div>
-
-
             <div class="swiper-slide">
                 <img src="img/Rectangle 25.png" alt="">
             </div>
-
-
             <div class="swiper-slide">
                 <img src="img/Rectangle 26.png" alt="">
             </div>
-
-
         </div>
-
-
         <!-- Previous Button -->
-
         <div class="swiper-button-prev"></div>
-
-
         <!-- Next Button -->
-
         <div class="swiper-button-next"></div>
-
-
         <!-- Dots -->
-
         <div class="swiper-pagination"></div>
-
-    </div>
-
-        
+    </div>     
     </section><br><br><br>
     <section >
           <div class="section8">
@@ -200,7 +165,7 @@
         <h2>Newsletter</h2>
         <p>Get 15% off your first purchase! plus, be the first to know about sales, new product launches, and exclusive offers!</p><br>
         <div class="newsbutton">
-            <input type="text" placeholder="   Enter your email"><button>join</button>
+            <input type="text" placeholder="Enter your email"><button>join</button>
         </div>
     </div>
     </div><br><br><br>
@@ -217,90 +182,53 @@
                     <img src="footer/Pinterest.png" alt="">
                     <img src="footer/Twitter Circled.png" alt="">
                 </div>
-                </div><br><br>
-                
+                </div><br><br>               
                 <div class="lastbar2">
                 <h2>My account</h2>
                 <p>Track my order</p>
                 <p>Terms of use</p>
                 <p>Wishlist</p>
                 <p>Submit Your feedback</p>
-
                 </div><br><br>
-
                 <div class="lastbar3">
                       <h2>Customer sevice</h2>
                 <p>Monday to Friday</p>
                 <p>10am - 6pm( NewYork time)</p>
                 <p>Call us: 123-456-7868</p>
                 <p>Email us:<email>info@example.com</email></p>
-
                 </div>
-                <div class="lastbar4">
-               
+                <div class="lastbar4">           
                 </div>
             </div>
         </div>
     </footer>
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script src="script.js"></script>
 </body>
 <script>
-
         const swiper = new Swiper(".mySwiper", {
-
             /* Show 2 images */
-
             slidesPerView: 2,
-
             spaceBetween: 10,
-
-
             /* Infinite loop */
-
             loop: true,
-
-
             /* Auto slide */
-
             autoplay: {
-
-                delay: 3000,
-
+                delay: 2000,
                 disableOnInteraction: false
-
             },
-
-
             /* Slow movement */
-
             speed: 1500,
-
-
             /* Previous / Next */
-
             navigation: {
-
                 nextEl: ".swiper-button-next",
-
                 prevEl: ".swiper-button-prev"
-
             },
-
-
             /* Dots */
-
             pagination: {
-
                 el: ".swiper-pagination",
-
                 clickable: true
-
             }
-
         });
-
     </script>
-
 </html>
