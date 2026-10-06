@@ -129,14 +129,14 @@
             overflow: hidden;
 
             box-shadow:
-                0 3px 15px rgba(0,0,0,0.08);
+                0 3px 15px rgba(0,0,0,0.08);    
         }
 
 
         .product-image {
             height: 230px;
 
-            background: #f3f3f3;
+            background: white;
 
             position: relative;
 
@@ -1252,45 +1252,27 @@
         /* =================================
            OPEN / CLOSE CART
         ================================= */
-
         function toggleCart() {
-
             const cart =
                 document.getElementById(
                     "cart-popup"
                 );
-
-
             cart.classList.toggle(
                 "active"
             );
-
-
             if (
                 cart.classList.contains("active")
             ) {
-
                 displayCart();
-
             }
-
         }
-
-
         /* =================================
            PAGE LOAD
         ================================= */
-
         displayProducts();
-
         updateCartCount();
-
         displayCart();
-
     </script>
-
-
 </body>
-
 </html>
 ```

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scalloped Edge - Method 3 (CSS Mask)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #ec3c3c;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+
+
+    /* Blue top container */
+    .scallop-banner {
+      width: 100%;
+      height: 20px;
+      background-color: #0e83b5; /* Matches the exact blue color */
+
+      /* SVG mask repeat along the bottom edge */
+      -webkit-mask: radial-gradient(circle 25px at 25px -10px, transparent 100%, #000 100%) 0 0 / 50px 100% repeat-x;
+      mask: radial-gradient(circle 25px at 25px -10px, transparent 100%, #000 100%) 0 0 / 50px 100% repeat-x;
+    }
+
+    /* Alternative pure SVG Data-URI mask approach for ultra-sharp scalloped bottom: */
+    .scallop-banner-svg-mask {
+      width: 100%;
+      height: 200px;
+      background-color: #0e83b5;
+      
+      /* Pure SVG mask applied to the bottom border */
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 25' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L100,0 L100,10 Q91.66,25 83.33,10 Q75,25 66.66,10 Q58.33,25 50,10 Q41.66,25 33.33,10 Q25,25 16.66,10 Q8.33,25 0,10 Z' fill='%23000'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 25' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L100,0 L100,10 Q91.66,25 83.33,10 Q75,25 66.66,10 Q58.33,25 50,10 Q41.66,25 33.33,10 Q25,25 16.66,10 Q8.33,25 0,10 Z' fill='%23000'/%3E%3C/svg%3E");
+      
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scalloped Header Banner -->
+  <div class="scallop-banner"></div>
+
+</body>
+</html>

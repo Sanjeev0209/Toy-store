@@ -1,3 +1,129 @@
+.navbar-cart {
+    position: relative;
+}
+
+.cart-button {
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.cart-button img {
+    width: 26px;
+    height: 26px;
+}
+
+#cartCount {
+    position: absolute;
+    top: -2px;
+    right: -3px;
+    background: #ff4081;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    max-width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background: white;
+    z-index: 9999;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: -5px 0 20px #0002;
+}
+
+.cart-panel.active {
+    display: block;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+}
+
+.cart-header button {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.cart-item-info p {
+    margin: 5px 0;
+}
+
+.cart-item button {
+    cursor: pointer;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.quantity-controls button,
+.remove-cart {
+    padding: 4px 9px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+}
+
+.remove-cart {
+    color: #e53935;
+}
+
+.cart-footer {
+    padding-top: 15px;
+}
+
+
+
+
+
 body{
     width: 100%;
     margin: 0;
@@ -247,9 +373,15 @@ footer{
         padding: 9px;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .search input{
+        width: 140px;
+    }
+}
+@media (max-width: 500px) {
+    .search{
         width: 200px;
+        justify-content: center;
     }
 }
 @media screen and (width <= 1024px) {
@@ -324,7 +456,7 @@ footer{
     grid-template-columns: repeat(1, 1fr);
   }
 }
-@media screen and (width <= 992px) {
+@media screen and (width <= 1280px) {
    .lastbar4{
   display: none;
   }
@@ -552,7 +684,7 @@ footer{
         justify-content: center;
     }
 }
-@media screen and (width <= 992px) {
+@media screen and (width <= 1080px) {
     .disjs{
         display: grid;
         grid-template-columns: repeat(3, 1fr);

@@ -2,7 +2,7 @@ body{
     width: 100%;
     margin: 0;
     padding: 0;
-  overflow-x: hidden;
+
 }
 .imgjs {
     position: relative;
@@ -70,7 +70,7 @@ header{
  max-width: 450px;
 }
 .searchbar{
-    width: 500px;
+    width: 360px;
 }
 .search input {
     font-family: "Comfortaa", sans-serif;
@@ -478,7 +478,7 @@ h4, p{
     width: 350px;
   }
 }
-@media screen and (width <= 900px) {
+@media screen and (width <= 980px) {
    .section6_2,.section7_2,.section8{
     grid-column: 1;
     display: grid;
@@ -659,7 +659,7 @@ h4, p{
     flex-direction: column;
   }
 }
-@media screen and (width <= 900px) {
+@media screen and (width <= 980px) {
   .toy{
    display: flex;
    flex-wrap: wrap;
@@ -801,7 +801,7 @@ h4, p{
         @media screen and (max-width: 850px) {
 
             body {
-                padding: 20px;
+                padding: 0px;
             }
 
             .mySwiper {
@@ -825,4 +825,35 @@ h4, p{
                 width: 100%;
             }
 
+        }
+
+
+        @media screen and (width<=1280px) {
+            .section4 img{
+                width: 400px;
+                height: 222px;
+            }
+            
+        }
+        
+        @media screen and (width<=1280px) {
+            .section6_2 img{
+                width: 300px;
+                height: 180px;
+            }
+            
+        }
+
+             @media screen and (width>=768px) {
+            .hidebtn{
+                display: none;
+            }
+            
+        }
+
+          @media screen and (width<=500px) {
+            .search input{
+               width: 120px;
+            }
+            
         }

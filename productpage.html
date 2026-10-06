@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Baloo+Bhaina+2:wght@400..800&family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
@@ -74,7 +75,9 @@
             </div><br><br>
             <div class="categories2">
                 <h2>Filter by price</h2>
-                <div class="inputrange"><input type="range" name="" id=""></div>
+                <div class="inputrange">
+                    <label for="priceRange">Max Price: $<span id="priceValue">50</span></label>
+                    <input type="range" name="" id="" min="0" max="50" value="50" step="5"></div>
                 <br><br>
                 <button class="btn">Apply</button>
             </div><br><br>
@@ -135,8 +138,8 @@
                 </div>
                <p>Showing 1-9 of 24 results</p> 
             </div>
-            <div id="card" class="disjs"></div>
-
+            <!-- <div id="card" class="disjs"></div> -->
+<div id="productGrid"></div>
         </div>
 
     </div>
@@ -178,7 +181,7 @@
             </div>
         </div>
     </footer>
-    <div id="card" class="disjs"></div>
+    <!-- <div id="card" class="disjs"></div> -->
 </body>
 <script src="script.js"></script>
 </html>
