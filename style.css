@@ -1160,6 +1160,63 @@ h4, p{
             border-radius: 6px;
             cursor: pointer;
         }
+        .buy-button, .track-button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .buy-button { background: #ffe926; color: #171717; }
+        .track-button { background: #fff; color: #222; border: 1px solid #ddd; }
+        .order-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0,0,0,.48);
+        }
+        .order-modal.open { display: flex; }
+        .order-dialog {
+            position: relative;
+            width: min(100%, 760px);
+            max-height: min(85vh, 760px);
+            padding: 28px;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 15px 50px rgba(0,0,0,.2);
+            overflow-y: auto;
+        }
+        .order-dialog h2 { margin: 0 35px 8px 0; }
+        .order-reference { color: #666; margin-bottom: 22px; }
+        .order-close { position: absolute; top: 12px; right: 15px; border: 0; background: none; font-size: 28px; cursor: pointer; }
+        .order-history-layout { display: grid; grid-template-columns: minmax(170px, 220px) minmax(0, 1fr); gap: 22px; margin-top: 18px; }
+        .order-history-list { display: grid; align-content: start; gap: 8px; }
+        .order-history-item { display: grid; gap: 5px; width: 100%; padding: 12px; border: 1px solid #e2e2e2; border-radius: 8px; background: #fff; text-align: left; cursor: pointer; }
+        .order-history-item span, .order-history-item small { color: #666; }
+        .order-history-item.selected { border-color: #4c9b61; background: #f3faf4; }
+        .order-details { min-width: 0; }
+        .order-details h3 { margin: 0 0 8px; }
+        .order-details h4 { margin: 18px 0 8px; }
+        .order-product-list { margin: 0; padding: 0; list-style: none; }
+        .order-product-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eee; }
+        .order-step { display: flex; gap: 13px; align-items: flex-start; min-height: 68px; color: #929292; }
+        .order-step-mark { display: grid; place-items: center; flex: 0 0 30px; height: 30px; border: 2px solid #ccc; border-radius: 50%; font-weight: 700; }
+        .order-step div { display: grid; gap: 5px; padding: 4px 0 18px; }
+        .order-step div span { font-size: 13px; }
+        .order-step.complete { color: #222; }
+        .order-step.complete .order-step-mark { border-color: #4c9b61; background: #4c9b61; color: #fff; }
+        .order-step.current strong { color: #26733a; }
+        @media(max-width: 600px) {
+            .order-history-layout { grid-template-columns: 1fr; }
+            .order-history-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .order-dialog { padding: 22px 16px; }
+        }
         /* ================================
            MOBILE
         ================================= */

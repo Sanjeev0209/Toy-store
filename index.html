@@ -66,6 +66,7 @@
             <div class="nav-auth" id="navAuth">
                 <a href="dive.html?mode=login" class="nav-auth-login">Login</a>
                 <a href="dive.html?mode=signup" class="nav-auth-register">Register</a>
+                <a href="admin.html" class="nav-auth-login">Order admin</a>
             </div>
 
             <div class="hidebtn"  id="hidebtn"><img src="svg/list.svg " alt=""></div>
@@ -90,8 +91,20 @@
                 <span id="cart-total">$0.00</span>
             </div>
             <button class="clear-cart" onclick="clearCart(event)">Clear Cart</button>
-            <!-- <button class="clear-cart">buy</button> -->
+            <button class="buy-button" onclick="placeOrder(event)">Buy now</button>
+            <button class="track-button" onclick="openOrderTracker(event)">Track the order</button>
         </div>
+    </div>
+
+    <div class="order-modal" id="order-modal" onclick="if(event.target === this) closeOrderTracker()">
+        <section class="order-dialog" role="dialog" aria-modal="true" aria-labelledby="order-title">
+            <button class="order-close" onclick="closeOrderTracker()" aria-label="Close">&times;</button>
+            <h2 id="order-title">Order tracking</h2>
+            <div class="order-history-layout">
+                <div class="order-history-list" id="order-history-list"></div>
+                <div class="order-details" id="order-details"><p>Select an order to see its details.</p></div>
+            </div>
+        </section>
     </div>
 
     <!-- -------------------------------------------------------------------------------------- -->
@@ -775,6 +788,106 @@ function displaySaleProducts() {
             updateCartCount();
             displayCart();
         }
+
+        const ORDER_STAGES = ["Confirmed", "On the way", "Delivered"];
+        const ORDER_STORAGE_KEY = "toyStoreOrders";
+
+        function readOrders() {
+            try { return JSON.parse(localStorage.getItem(ORDER_STORAGE_KEY)) || []; }
+            catch { return []; }
+        }
+
+        function formatOrderDate(value) {
+            if (!value) return "Date pending";
+            return new Date(value + "T00:00:00").toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+        }
+
+        function placeOrder(event) {
+            if (event) event.stopPropagation();
+            if (!cartItems.length) {
+                alert("Your cart is empty. Add a toy before placing an order.");
+                return;
+            }
+            const now = new Date();
+            const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+            const order = {
+                id: `TOY-${now.getTime().toString().slice(-8)}`,
+                createdAt: now.toISOString(),
+                status: 0,
+                items: cartItems.map(item => ({ ...item })),
+                total: cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+                stages: [
+                    { name: ORDER_STAGES[0], date: today, completed: true },
+                    { name: ORDER_STAGES[1], date: "", completed: false },
+                    { name: ORDER_STAGES[2], date: "", completed: false }
+                ]
+            };
+            const orders = readOrders();
+            orders.unshift(order);
+            localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(orders));
+            localStorage.setItem("lastToyStoreOrder", order.id);
+            cartItems = [];
+            saveCart();
+            updateCartCount();
+            displayCart();
+            closeCart();
+            alert(`Your order was placed successfully! Order ${order.id}`);
+            renderOrderTracker(order.id);
+        }
+
+        function openOrderTracker(event) {
+            if (event) event.stopPropagation();
+            const orders = readOrders();
+            if (!orders.length) {
+                alert("You do not have any orders to track yet.");
+                return;
+            }
+            document.getElementById("order-history-list").innerHTML = orders.map(order => `
+                <button type="button" class="order-history-item" onclick="renderOrderTracker('${order.id}')">
+                    <strong>${order.id}</strong><span>$${Number(order.total).toFixed(2)}</span>
+                    <small>${ORDER_STAGES[Number(order.status)] || ORDER_STAGES[0]}</small>
+                </button>`).join("");
+            document.getElementById("order-modal").classList.add("open");
+            const preferredOrder = localStorage.getItem("lastToyStoreOrder");
+            renderOrderTracker(orders.some(order => order.id === preferredOrder) ? preferredOrder : orders[0].id);
+        }
+
+        function renderOrderTracker(orderId) {
+            const order = readOrders().find(item => item.id === orderId);
+            if (!order) {
+                alert("Order not found. Please place an order first.");
+                return;
+            }
+            const list = document.getElementById("order-history-list");
+            if (!list.children.length) {
+                list.innerHTML = readOrders().map(item => `
+                    <button type="button" class="order-history-item" onclick="renderOrderTracker('${item.id}')">
+                        <strong>${item.id}</strong><span>$${Number(item.total).toFixed(2)}</span>
+                        <small>${ORDER_STAGES[Number(item.status)] || ORDER_STAGES[0]}</small>
+                    </button>`).join("");
+            }
+            list.querySelectorAll(".order-history-item").forEach(button => button.classList.toggle("selected", button.textContent.includes(order.id)));
+            const stages = Array.isArray(order.stages) ? order.stages : [];
+            const stepNames = ORDER_STAGES;
+            document.getElementById("order-details").innerHTML = `
+                <h3>Order ${order.id}</h3>
+                <p class="order-reference">Placed ${new Date(order.createdAt).toLocaleString()} · Total $${Number(order.total).toFixed(2)}</p>
+                <h4>Products</h4>
+                <ul class="order-product-list">${(order.items || []).map(item => `<li><span>${item.name} × ${item.quantity}</span><strong>$${(item.price * item.quantity).toFixed(2)}</strong></li>`).join("")}</ul>
+                <h4>Delivery progress</h4>
+                <div class="order-steps">${stepNames.map((name, index) => {
+                    const stage = stages[index] || { date: "", completed: index <= Number(order.status) };
+                    const complete = stage.completed || index <= Number(order.status);
+                    return `<div class="order-step ${complete ? "complete" : ""} ${index === Number(order.status) ? "current" : ""}">
+                        <span class="order-step-mark">${complete ? "✓" : index + 1}</span>
+                        <div><strong>${name}</strong><span>${complete ? formatOrderDate(stage.date) : "Waiting for an update"}</span></div>
+                    </div>`;
+                }).join("")}</div>`;
+        }
+
+        function closeOrderTracker() {
+            document.getElementById("order-modal").classList.remove("open");
+        }
         /* =================================
            OPEN / CLOSE CART
         ================================= */
@@ -820,6 +933,7 @@ function displaySaleProducts() {
         document.addEventListener("keydown", function(event) {
             if (event.key === "Escape") {
                 closeCart();
+                closeOrderTracker();
             }
         });
 

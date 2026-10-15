@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Admin | Baby Toy Store</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 32px 18px; background: #f5f6f8; color: #202124; font-family: Arial, sans-serif; }
+        main { max-width: 1000px; margin: auto; }
+        header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
+        h1 { margin: 0; font-size: 28px; }
+        header a { color: #333; }
+        .orders { display: grid; gap: 16px; }
+        .order-card { padding: 20px; border-radius: 12px; background: #fff; box-shadow: 0 3px 14px #0000000d; }
+        .order-heading { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+        .order-heading h2 { margin: 0 0 6px; font-size: 18px; }
+        .muted { color: #70757a; font-size: 14px; }
+        .items { margin: 10px 0 18px; padding-left: 20px; color: #45484c; }
+        .stage-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .stage { padding: 13px; border: 1px solid #e3e5e8; border-radius: 8px; }
+        .stage label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; }
+        .stage input { width: 100%; padding: 9px; border: 1px solid #ccd0d5; border-radius: 5px; }
+        .stage small { display: block; margin-top: 7px; color: #626970; }
+        .actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
+        button { padding: 10px 16px; border: 0; border-radius: 6px; background: #ffe926; font-weight: 700; cursor: pointer; }
+        button.delete-order { background: #fff; border: 1px solid #c83f3f; color: #b42323; }
+        .empty { padding: 40px 20px; border-radius: 12px; background: white; text-align: center; color: #676b70; }
+        @media(max-width: 650px) { body { padding: 22px 12px; } .stage-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<main>
+    <header><h1>Order updates</h1><a href="index.html">Back to store</a></header>
+    <div id="orders" class="orders" aria-live="polite"></div>
+</main>
+<script>
+    const ORDER_KEY = "toyStoreOrders";
+    const stageNames = ["Confirmed", "On the way", "Delivered"];
+    function loadOrders() {
+        try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || []; }
+        catch { return []; }
+    }
+    function renderOrders() {
+        const container = document.getElementById("orders");
+        const orders = loadOrders();
+        if (!orders.length) {
+            container.innerHTML = '<div class="empty">No orders yet. Orders placed from the store will appear here.</div>';
+            return;
+        }
+        container.innerHTML = orders.map(order => {
+            const stages = Array.isArray(order.stages) ? order.stages : stageNames.map((name, index) => ({ name, date: "", completed: index === 0 }));
+            const items = (order.items || []).map(item => `<li>${item.name} × ${item.quantity} — $${(item.price * item.quantity).toFixed(2)}</li>`).join("");
+            return `<article class="order-card" data-order="${order.id}">
+                <div class="order-heading"><div><h2>${order.id}</h2><span class="muted">Placed ${new Date(order.createdAt).toLocaleString()}</span></div><strong>$${Number(order.total).toFixed(2)}</strong></div>
+                <ul class="items">${items}</ul>
+                <div class="stage-grid">${stageNames.map((name, index) => `<div class="stage"><label for="date-${order.id}-${index}">${name} date</label><input type="date" id="date-${order.id}-${index}" value="${stages[index]?.date || ""}"><small>${stages[index]?.completed ? "Visible to customer" : "Not completed"}</small></div>`).join("")}</div>
+                <div class="stage"><label for="status-${order.id}">Order status</label><select id="status-${order.id}" style="width:100%;padding:9px;border:1px solid #ccd0d5;border-radius:5px">${stageNames.map((name, index) => `<option value="${index}" ${Number(order.status) === index ? "selected" : ""}>${name}</option>`).join("")}</select></div>
+                <div class="actions">
+                    <button class="delete-order" type="button" onclick="deleteOrder('${order.id}')">Delete order</button>
+                    <button type="button" onclick="saveOrderUpdate('${order.id}')">Save order update</button>
+                </div>
+            </article>`;
+        }).join("");
+    }
+    function saveOrderUpdate(orderId) {
+        const orders = loadOrders();
+        const order = orders.find(item => item.id === orderId);
+        if (!order) return;
+        const status = Number(document.getElementById(`status-${orderId}`).value);
+        order.status = status;
+        order.stages = stageNames.map((name, index) => ({
+            name,
+            date: document.getElementById(`date-${orderId}-${index}`).value,
+            completed: index <= status
+        }));
+        if (order.stages.slice(0, status + 1).some(stage => !stage.date)) {
+            alert("Add a date for each completed order step before saving.");
+            return;
+        }
+        localStorage.setItem(ORDER_KEY, JSON.stringify(orders));
+        renderOrders();
+        alert("Order status and dates updated.");
+    }
+    function deleteOrder(orderId) {
+        if (!confirm(`Delete order ${orderId} and its saved product details?`)) return;
+        const orders = loadOrders().filter(order => order.id !== orderId);
+        localStorage.setItem(ORDER_KEY, JSON.stringify(orders));
+        if (localStorage.getItem("lastToyStoreOrder") === orderId) {
+            if (orders.length) localStorage.setItem("lastToyStoreOrder", orders[0].id);
+            else localStorage.removeItem("lastToyStoreOrder");
+        }
+        renderOrders();
+    }
+    window.addEventListener("storage", renderOrders);
+    renderOrders();
+</script>
+</body>
+</html>
