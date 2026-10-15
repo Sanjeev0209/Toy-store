@@ -34,8 +34,8 @@
                 <p>Free  free shipping with over $150</p>
             </div>
             <div class="headerlogin">
-                <div>Login</div>
-                <div>Register</div>
+                <div><p><a href="dive.html?mode=login">Login</a></p></div>
+                <div><p><a href="dive.html?mode=signup">Register</a></p></div>
             </div>
            
         </div>
@@ -57,6 +57,11 @@
                 <div class="search">
                     <input type="text" placeholder="      Search"></input><div class="searchsvg"><img src="svg/search.svg" alt=""></div>
                 </div>
+            </div>
+            <!-- Scroll-in Login / Register in navbar -->
+            <div class="nav-auth" id="navAuth">
+                <a href="dive.html?mode=login" class="nav-auth-login">Login</a>
+                <a href="dive.html?mode=signup" class="nav-auth-register">Register</a>
             </div>
         </div>
         <div></div>
@@ -184,6 +189,19 @@
     <!-- <div id="card" class="disjs"></div> -->
 </body>
 <script src="script.js"></script>
+<script>
+    function handleNavbarScroll() {
+        const navbar = document.querySelector(".navbar");
+        if (!navbar) return;
+        if (window.scrollY > 45) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    }
+    window.addEventListener("scroll", handleNavbarScroll);
+    handleNavbarScroll();
+</script>
 </html>
 
 

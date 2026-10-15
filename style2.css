@@ -131,7 +131,7 @@ body{
 }
 a, p{
     font-family:  "Baloo Bhaina 2", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
 }
 h2{
     font-family: "Baloo Bhaina 2", sans-serif;
@@ -146,6 +146,14 @@ h2{
     padding-left: 40px;
     padding-right: 40px;
     color: white;
+    background-color: white;
+   
+}
+header, .headfix{
+    position: sticky;
+    top: -50px;
+    z-index: 1000;
+    width: 100%;
 }
 .headertop img{
     width: 25px;
@@ -171,8 +179,528 @@ h2{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 150px;
+    height: 110px;
     padding-right: 20px;
+    background-color: #ffffff;
+    transition: height 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled{
+    height: 85px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Scroll-in Login / Register in navbar */
+.nav-auth{
+    display: none;
+    align-items: center;
+    gap: 12px;
+    margin-left: 15px;
+}
+
+.navbar.scrolled .nav-auth{
+    display: flex;
+    animation: navAuthSlideIn 0.3s ease forwards;
+}
+
+@keyframes navAuthSlideIn{
+    from{
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-auth a{
+    text-decoration: none;
+    font-family: "Comfortaa", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.nav-auth-login{
+    color: #333333;
+    border: 1.5px solid #dcdcdc;
+    background: #ffffff;
+}
+
+.nav-auth-login:hover{
+    border-color: #FF6B8B;
+    color: #FF6B8B;
+    background: #FFF0F5;
+}
+
+.nav-auth-register{
+    color: #222222;
+    background: #FFE926;
+    border: 1.5px solid #FFE926;
+    box-shadow: 0 4px 10px rgba(255, 233, 38, 0.3);
+}
+
+.nav-auth-register:hover{
+    background: #ffd600;
+    box-shadow: 0 6px 14px rgba(255, 233, 38, 0.45);
+    transform: translateY(-1px);
+}
+
+/* Cart dropdown notification toast right below cart icon */
+.nav-cart{
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-toast{
+    position: absolute;
+    top: calc(100% + 12px);
+    right: -10px;
+    background: #ffffff;
+    color: #1b5e20;
+    padding: 9px 15px;
+    border-radius: 12px;
+    font-family: "Comfortaa", "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border: 1.5px solid #81c784;
+    z-index: 2500;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.cart-toast.show{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cart-toast::before{
+    content: "";
+    position: absolute;
+    top: -7px;
+    right: 24px;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border-left: 1.5px solid #81c784;
+    border-top: 1.5px solid #81c784;
+    transform: rotate(45deg);
+}
+
+.cart-toast-check{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #4caf50;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.cart-popup{
+    top: 95px !important;
+}
+
+/* ==================================================
+   INTERACTIVE CART POPUP & ITEM ANIMATIONS
+================================================== */
+.cart-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    border-radius: 12px;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+    animation: cartItemFadeIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.cart-item:hover {
+    background-color: #fafafa;
+}
+
+@keyframes cartItemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cart-item.item-removing {
+    opacity: 0;
+    transform: translateX(60px) scale(0.85);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Cart Item Image with Interactive 3D Bounce Animation */
+.cart-item-image {
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
+    background: linear-gradient(135deg, #fff5f7, #f0f7ff);
+    border-radius: 14px;
+    border: 2px solid #ffeef2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.cart-item-image:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 6px 15px rgba(255, 107, 139, 0.25);
+    border-color: #ffccd5;
+}
+
+.cart-item-image img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+}
+
+/* Click animation on Cart Image */
+.cart-item-image.animate-click,
+.cart-item-image.img-bounce {
+    animation: toyCartBounce 0.52s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes toyCartBounce {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.22) rotate(-9deg);
+    }
+    50% {
+        transform: scale(0.92) rotate(7deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(-3deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Cart Item Details */
+.cart-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cart-item-details h3 {
+    font-family: "Comfortaa", "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.cart-item-details h3:hover {
+    color: #ff6b8b;
+}
+
+.cart-price {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #27ae60;
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.cart-price.price-bump {
+    animation: priceHighlight 0.35s ease;
+}
+
+@keyframes priceHighlight {
+    0% {
+        transform: scale(1);
+        color: #27ae60;
+    }
+    50% {
+        transform: scale(1.2);
+        color: #e67e22;
+    }
+    100% {
+        transform: scale(1);
+        color: #27ae60;
+    }
+}
+
+/* Quantity Control Buttons */
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.quantity button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #e0e0e0;
+    background: #ffffff;
+    color: #333333;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    outline: none;
+}
+
+.quantity button:hover {
+    background: #ffe926;
+    border-color: #ffd600;
+    color: #000000;
+    transform: scale(1.18);
+    box-shadow: 0 4px 8px rgba(255, 233, 38, 0.4);
+}
+
+.quantity button:active {
+    transform: scale(0.85);
+}
+
+.quantity span {
+    min-width: 24px;
+    text-align: center;
+    font-family: "Comfortaa", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #333333;
+    display: inline-block;
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.quantity span.qty-bump {
+    animation: qtyPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes qtyPop {
+    0% {
+        transform: scale(1);
+        color: #333;
+    }
+    50% {
+        transform: scale(1.45);
+        color: #ff6b8b;
+    }
+    100% {
+        transform: scale(1);
+        color: #333;
+    }
+}
+
+/* Remove Button */
+.remove {
+    border: none;
+    background: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "Comfortaa", sans-serif;
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.remove:hover {
+    background: #ffebee;
+    color: #c0392b;
+    transform: translateX(2px);
+}
+
+/* ==================================================
+   PRODUCT CARD CART BUTTON: LOADING & TICK ANIMATIONS
+================================================== */
+.icon-btn.cart-btn {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 2px solid #eaeaea;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0;
+}
+
+.icon-btn.cart-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 4px 12px rgba(255, 107, 139, 0.25);
+    border-color: #ff6b8b;
+}
+
+/* Original Cart Icon */
+.icon-btn.cart-btn .cart-icon-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    transition: opacity 0.2s ease, transform 0.25s ease;
+    display: block;
+}
+
+/* Loading Spinner (Circle Outerline) */
+.icon-btn.cart-btn .cart-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22px;
+    height: 22px;
+    margin-top: -11px;
+    margin-left: -11px;
+    border: 2.5px solid rgba(46, 125, 50, 0.2);
+    border-top: 2.5px solid #2e7d32;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transform: rotate(0deg);
+    transition: opacity 0.2s ease;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+@keyframes cartOuterlineSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Success Checkmark Tick */
+.icon-btn.cart-btn .cart-check-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2e7d32;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+/* State 1: LOADING (Circle Outerline Spinner) */
+.icon-btn.cart-btn.loading {
+    border-color: #2e7d32;
+    background: #f4fbf5;
+}
+
+.icon-btn.cart-btn.loading .cart-icon-img {
+    opacity: 0;
+    transform: scale(0.4);
+}
+
+.icon-btn.cart-btn.loading .cart-spinner {
+    opacity: 1;
+    visibility: visible;
+    animation: cartOuterlineSpin 0.65s linear infinite;
+}
+
+/* State 2: SUCCESS / TICK */
+.icon-btn.cart-btn.success {
+    border-color: #2e7d32;
+    background: #2e7d32;
+    transform: scale(1.08);
+}
+
+.icon-btn.cart-btn.success .cart-icon-img {
+    opacity: 0;
+    transform: scale(0.4);
+}
+
+.icon-btn.cart-btn.success .cart-spinner {
+    opacity: 0;
+    visibility: hidden;
+    animation: none;
+}
+
+.icon-btn.cart-btn.success .cart-check-icon {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    box-shadow: 0 0 12px rgba(46, 125, 50, 0.45);
+}
+
+/* Navbar badge pop on cart add */
+@keyframes badgePop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
+#cart-count.badge-pop {
+    animation: badgePop 0.35s ease;
+}
+
+@media (max-width: 900px){
+    .nav-auth a{
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px){
+    .nav-auth{
+        display: none !important;
+    }
 }
 .logo{
     padding-left: 50px;
@@ -348,11 +876,11 @@ footer{
         width: 300px;
     }
 }
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .searchbar img{
         display: none;
     }
-}
+} */
 @media (max-width: 768px) {
     .searchsvg img{
         display: flex;
@@ -394,9 +922,10 @@ footer{
        max-width: 50px;
     }
 }
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .products{
         max-width: 250px;
+        flex: 1;
     }
 }
 @media (max-width: 576px) {
@@ -404,24 +933,24 @@ footer{
         max-width: 180px;
         gap: 20px;
     }
-}
-@media (max-width: 476px) {
+} */
+/* @media (max-width: 476px) {
     .products{
         width: 160px;
         gap: 20px;
         padding-left: 2px;
     }
-}
+} */
 @media (max-width: 476px) {
     .container-card{
         width: 170px;
     }
 }
-@media (max-width: 450px) {
+/* @media (max-width: 450px) {
     .products{
         max-width: 180px;
     }
-}
+} */
 @media (max-width: 576px) {
     .categories1, .categories2, .categories3{
         padding: 10px 10px; 
@@ -600,7 +1129,7 @@ footer{
     width: 15px;
     height: 15px;
 }
-.disjs{
+.products{
     display: grid;
     padding: 10px 25px ;
     grid-template-columns: auto auto auto auto ;
@@ -748,4 +1277,33 @@ footer{
 }
 .toy-img{
     padding: 25px ;
+}
+
+
+@media screen and (width <= 1250px) {
+  .products, .sale-true {
+    display:grid;
+    grid: 3;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (width <= 950px) {
+  .products, .sale-true {
+    display:grid;
+    grid: 2;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (width <= 650px) {
+  .products, .sale-true {
+    display:grid;
+    grid: 1;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (width <= 450px) {
+.section3_2 p{
+    font-size: 16px;
+}
 }

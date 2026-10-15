@@ -1,193 +1,193 @@
 /* ==================================================
    MAIN PRODUCT CARDS
 ================================================== */
-const carddetails = [
-    {
-        id: 1,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11.png",
-        sale:true,
-        offer: "29.00",
-        rate: "",
-        oldrate: "$39.00",
-        star: "svg/Vector (1).png",
-        heart: "svg/heart.svg",
-        like:"svg/heartfill.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    },{
-        id: 2,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (1).png",
-        offer: "29.00",
-        rate: "",
-        oldrate: "$39.00",
-        star: "svg/Vector.png",
-        heart: "svg/heart.svg",
-        like:"svg/heartfill.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    }, {
-        id: 3,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (2).png",
-        sale:true,
-        offer: "",
-        rate: "$39.00",
-        oldrate: "",
-        star: "svg/Vector (1).png",
-        heart: "svg/heart.svg",
-        like:"svg/heartfill.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    }, {
-        id: 4,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (3).png",
-        offer: "",
-        rate: "$39.00",
-        oldrate: "",
-        star: "svg/Vector.png",
-        heart: "svg/heart.svg",
-        like:"svg/heartfill.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    }, {
-        id: 5,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (4).png",
-        offer: "$29.00",
-        sale:true,
-        rate: "",
-        oldrate: "$39.00",
-        star: "svg/Vector (1).png",
-        heart: "svg/heart.svg",
-        like:"svg/heartfill.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    }, {
-        id: 6,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (5).png",
-        sale:true,
-        offer: "",
-        rate: "$39.00",
-        oldrate: "",
-        star: "svg/Vector.png",
-        heart: "svg/heart.svg",
-        like:"svg/heartfill.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    },{
-        id: 7,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (6).png",
-        offer: "$29.00",
-        rate: "",
-        oldrate: "$39.00",
-        like:"svg/heartfill.svg",
-        star: "svg/Vector (1).png",
-        heart: "svg/heart.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    },{
-        id: 8,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (7).png",
-        offer: "",
-        rate: "$39.00",
-        oldrate: "",
-        rateColor: "black",
-        star: "svg/Vector.png",
-        heart: "svg/heart.svg",
-        like:"svg/heartfill.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    }
-];
-/* ==================================================
-   MAIN CARD DISPLAY
-================================================== */
-const carddetail = document.getElementById("card");
-function displayMainCards() {
-    carddetail.innerHTML = "";
-    carddetails.forEach((item) => {
-        const cardHTML = `
-            <div class="disjs">
-                <div class="cardjs">
-                    <div class="imgjs">
-                      ${item.sale ? `<div class="salejs">SALE</div>` : ""}
-                        <img    src="${item.imgback}"    alt="${item.name}">
-                        <div class="heartjs">
-                            <!-- HEART -->
-                            <button class="iconbtn" onclick="likeMainProduct(${item.id})">
-                                <img src="${item.liked     ? item.like    : item.heart}" id="main-heart-${item.id}" alt="Like">
-                            </button>
-                            <!-- CART -->
-                            <button class="iconbtn" onclick="cartMainProduct(${item.id})">
-                                <img src="${item.cart}" alt="Cart">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="botjs">
-                        <h3>${item.name}</h3>
-                        <div class="cardrate">
-                           <p class="cardoff">${item.offer}</p>
-                            <p class="rate" style="color:${item.rateColor || ""}" >${item.rate}</p>
-                            <p class="oldrate">${item.oldrate}</p>
-                        </div>
-                        <div class="starjs">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        carddetail.innerHTML += cardHTML;
-    });
-}
-/* ==================================================
-   MAIN LIKE / UNLIKE
-================================================== */
-function likeMainProduct(id) {
-    const product = carddetails.find(
-        item => item.id === id
-    );
-    if (!product) {
-        return;
-    }
-    /* Change true / false */
-    product.liked = !product.liked;
-    /* Get heart image */
-    const heartImage = document.getElementById(
-        `main-heart-${id}`
-    );
-    /* Change SVG */
-    if (product.liked) {
-        heartImage.src = "svg/heartfill.svg";
-    } else {
-        heartImage.src = product.heart;
-    }
-}
-/* ==================================================
-   MAIN CART
-================================================== */
-function cartMainProduct(id) {
-    const product = carddetails.find(item => item.id === id
-    );
-    if (!product) {
-        return;
-    }
-    console.log("Cart:", product.name);
-}
-/* ==================================================
-   DISPLAY MAIN CARDS
-================================================== */
-displayMainCards();
+// const carddetails = [
+//     {
+//         id: 1,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11.png",
+//         sale:true,
+//         offer: "29.00",
+//         rate: "",
+//         oldrate: "$39.00",
+//         star: "svg/Vector (1).png",
+//         heart: "svg/heart.svg",
+//         like:"svg/heartfill.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     },{
+//         id: 2,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (1).png",
+//         offer: "29.00",
+//         rate: "",
+//         oldrate: "$39.00",
+//         star: "svg/Vector.png",
+//         heart: "svg/heart.svg",
+//         like:"svg/heartfill.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     }, {
+//         id: 3,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (2).png",
+//         sale:true,
+//         offer: "",
+//         rate: "$39.00",
+//         oldrate: "",
+//         star: "svg/Vector (1).png",
+//         heart: "svg/heart.svg",
+//         like:"svg/heartfill.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     }, {
+//         id: 4,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (3).png",
+//         offer: "",
+//         rate: "$39.00",
+//         oldrate: "",
+//         star: "svg/Vector.png",
+//         heart: "svg/heart.svg",
+//         like:"svg/heartfill.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     }, {
+//         id: 5,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (4).png",
+//         offer: "$29.00",
+//         sale:true,
+//         rate: "",
+//         oldrate: "$39.00",
+//         star: "svg/Vector (1).png",
+//         heart: "svg/heart.svg",
+//         like:"svg/heartfill.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     }, {
+//         id: 6,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (5).png",
+//         sale:true,
+//         offer: "",
+//         rate: "$39.00",
+//         oldrate: "",
+//         star: "svg/Vector.png",
+//         heart: "svg/heart.svg",
+//         like:"svg/heartfill.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     },{
+//         id: 7,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (6).png",
+//         offer: "$29.00",
+//         rate: "",
+//         oldrate: "$39.00",
+//         like:"svg/heartfill.svg",
+//         star: "svg/Vector (1).png",
+//         heart: "svg/heart.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     },{
+//         id: 8,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (7).png",
+//         offer: "",
+//         rate: "$39.00",
+//         oldrate: "",
+//         rateColor: "black",
+//         star: "svg/Vector.png",
+//         heart: "svg/heart.svg",
+//         like:"svg/heartfill.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     }
+// ];
+// /* ==================================================
+//    MAIN CARD DISPLAY
+// ================================================== */
+// const carddetail = document.getElementById("card");
+// function displayMainCards() {
+//     carddetail.innerHTML = "";
+//     carddetails.forEach((item) => {
+//         const cardHTML = `
+//             <div class="disjs">
+//                 <div class="cardjs">
+//                     <div class="imgjs">
+//                       ${item.sale ? `<div class="salejs">SALE</div>` : ""}
+//                         <img    src="${item.imgback}"    alt="${item.name}">
+//                         <div class="heartjs">
+//                             <!-- HEART -->
+//                             <button class="iconbtn" onclick="likeMainProduct(${item.id})">
+//                                 <img src="${item.liked     ? item.like    : item.heart}" id="main-heart-${item.id}" alt="Like">
+//                             </button>
+//                             <!-- CART -->
+//                             <button class="iconbtn" onclick="cartMainProduct(${item.id})">
+//                                 <img src="${item.cart}" alt="Cart">
+//                             </button>
+//                         </div>
+//                     </div>
+//                     <div class="botjs">
+//                         <h3>${item.name}</h3>
+//                         <div class="cardrate">
+//                            <p class="cardoff">${item.offer}</p>
+//                             <p class="rate" style="color:${item.rateColor || ""}" >${item.rate}</p>
+//                             <p class="oldrate">${item.oldrate}</p>
+//                         </div>
+//                         <div class="starjs">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `; 
+//         carddetail.innerHTML += cardHTML;
+//     });
+// }
+// /* ==================================================
+//    MAIN LIKE / UNLIKE
+// ================================================== */
+// function likeMainProduct(id) {
+//     const product = carddetails.find(
+//         item => item.id === id
+//     );
+//     if (!product) {
+//         return;
+//     }
+//     /* Change true / false */
+//     product.liked = !product.liked;
+//     /* Get heart image */
+//     const heartImage = document.getElementById(
+//         `main-heart-${id}`
+//     );
+//     /* Change SVG */
+//     if (product.liked) {
+//         heartImage.src = "svg/heartfill.svg";
+//     } else {
+//         heartImage.src = product.heart;
+//     }
+// }
+// /* ==================================================
+//    MAIN CART
+// ================================================== */
+// function cartMainProduct(id) {
+//     const product = carddetails.find(item => item.id === id
+//     );
+//     if (!product) {
+//         return;
+//     }
+//     console.log("Cart:", product.name);
+// }
+// /* ==================================================
+//    DISPLAY MAIN CARDS
+// ================================================== */
+// displayMainCards();
 /* ==================================================
    PERFECT TOYS
 ================================================== */
@@ -230,172 +230,178 @@ perfecttoy.forEach((item) => {
    SECOND CARD ARRAY
 ================================================== */
 
-const card4 = [
-    {
-        id: 1,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11.png",
-        offer: "$29.00",
-        sale:true,
-        rate: "",
-        oldrate: "$39.00",
-        star: "svg/Vector (1).png",
-        heart: "svg/heart.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    },{
-        id: 2,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (1).png",
-        offer: "$29.00",
-        sale:true,
-        rate: "",
-        oldrate: "$39.00",
-        star: "svg/Vector.png",
-        heart: "svg/heart.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    },{
-        id: 3,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (2).png",
-        offer: "",
-        rate: "$39.00",
-        sale:true,
-        oldrate: "",
-        star: "svg/Vector (1).png",
-        heart: "svg/heart.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    },{
-        id: 4,
-        name: "Blocks shape-sorting Toy",
-        imgback: "toppicks/image 11 (3).png",
-        offer: "",
-        rate: "$39.00",
-        sale:true,
-        oldrate: "",
-        star: "svg/Vector.png",
-        heart: "svg/heart.svg",
-        liked: false,
-        cart: "svg/shopping-cart.svg"
-    }
-];
-/* ==================================================
-   SECOND CARD DISPLAY
-================================================== */
-const crd4 = document.getElementById("card4");
-function displayCard4() {
-    crd4.innerHTML = "";
-    card4.forEach((item) => {
-        const cardHTML = `
-            <div class="disjs">
-                <div class="cardjs">
-                    <div class="imgjs">
-                      ${item.sale ? `<div class="salejs">SALE</div>` : ""}
-                        <img   src="${item.imgback}"   alt="${item.name}"    >
-                        <div class="heartjs">
-                            <!-- HEART -->
-                            <button class="iconbtn"   onclick="likeCard4Product(${item.id})">
-                                <img    src="${item.liked   ? "svg/heartfill.svg" : item.heart}"   id="card4-heart-${item.id}"alt="Like"   >
-                            </button>
-                            <!-- CART -->
-                            <button    class="iconbtn"  onclick="cartCard4Product(${item.id})">
-                                <img  src="${item.cart}" alt="Cart">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="botjs">
-                        <h3>  ${item.name}</h3>
-                        <div class="cardrate">
-                            <p class="cardoff"> ${item.offer}</p>
-                            <p class="rate">  ${item.rate}</p>
-                            <p class="oldrate"> ${item.oldrate}</p>
-                        </div>
-                        <div class="starjs">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                            <img src="${item.star}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        crd4.innerHTML += cardHTML;
-    });
-}
-/* ==================================================
-   SECOND CARD LIKE / UNLIKE
-================================================== */
-function likeCard4Product(id) {
-    const product = card4.find( item => item.id === id );
-    if (!product) {
-        return;
-    }
-    /* Toggle */
-    product.liked = !product.liked;
-    /* Find image */
-    const heartImage = document.getElementById(
-        `card4-heart-${id}`
-    );
-    /* Change image */
-    if (product.liked) {
-        heartImage.src = "svg/heartfill.svg";
-    } else {
-        heartImage.src = product.heart;
-    }
-}
-/* ==================================================
-   SECOND CARD CART
-================================================== */
-function cartCard4Product(id) {
-    const product = card4.find( item => item.id === id);
-    if (!product) {
-        return;
-    }
-    console.log("Cart:", product.name);
-}
-/* ==================================================
-   DISPLAY SECOND CARDS
-================================================== */
-displayCard4();
+// const card4 = [
+//     {
+//         id: 1,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11.png",
+//         offer: "$29.00",
+//         sale:true,
+//         rate: "",
+//         oldrate: "$39.00",
+//         star: "svg/Vector (1).png",
+//         heart: "svg/heart.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     },{
+//         id: 2,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (1).png",
+//         offer: "$29.00",
+//         sale:true,
+//         rate: "",
+//         oldrate: "$39.00",
+//         star: "svg/Vector.png",
+//         heart: "svg/heart.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     },{
+//         id: 3,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (2).png",
+//         offer: "",
+//         rate: "$39.00",
+//         sale:true,
+//         oldrate: "",
+//         star: "svg/Vector (1).png",
+//         heart: "svg/heart.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     },{
+//         id: 4,
+//         name: "Blocks shape-sorting Toy",
+//         imgback: "toppicks/image 11 (3).png",
+//         offer: "",
+//         rate: "$39.00",
+//         sale:true,
+//         oldrate: "",
+//         star: "svg/Vector.png",
+//         heart: "svg/heart.svg",
+//         liked: false,
+//         cart: "svg/shopping-cart.svg"
+//     }
+// ];
+// /* ==================================================
+//    SECOND CARD DISPLAY
+// ================================================== */
+// const crd4 = document.getElementById("card4");
+// function displayCard4() {
+//     crd4.innerHTML = "";
+//     card4.forEach((item) => {
+//         const cardHTML = `
+//             <div class="disjs">
+//                 <div class="cardjs">
+//                     <div class="imgjs">
+//                       ${item.sale ? `<div class="salejs">SALE</div>` : ""}
+//                         <img   src="${item.imgback}"   alt="${item.name}"    >
+//                         <div class="heartjs">
+//                             <!-- HEART -->
+//                             <button class="iconbtn"   onclick="likeCard4Product(${item.id})">
+//                                 <img    src="${item.liked   ? "svg/heartfill.svg" : item.heart}"   id="card4-heart-${item.id}"alt="Like"   >
+//                             </button>
+//                             <!-- CART -->
+//                             <button    class="iconbtn"  onclick="cartCard4Product(${item.id})">
+//                                 <img  src="${item.cart}" alt="Cart">
+//                             </button>
+//                         </div>
+//                     </div>
+//                     <div class="botjs">
+//                         <h3>  ${item.name}</h3>
+//                         <div class="cardrate">
+//                             <p class="cardoff"> ${item.offer}</p>
+//                             <p class="rate">  ${item.rate}</p>
+//                             <p class="oldrate"> ${item.oldrate}</p>
+//                         </div>
+//                         <div class="starjs">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                             <img src="${item.star}" alt="">
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+//         crd4.innerHTML += cardHTML;
+//     });
+// }
+// /* ==================================================
+//    SECOND CARD LIKE / UNLIKE
+// ================================================== */
+// function likeCard4Product(id) {
+//     const product = card4.find( item => item.id === id );
+//     if (!product) {
+//         return;
+//     }
+//     /* Toggle */
+//     product.liked = !product.liked;
+//     /* Find image */
+//     const heartImage = document.getElementById(
+//         `card4-heart-${id}`
+//     );
+//     /* Change image */
+//     if (product.liked) {
+//         heartImage.src = "svg/heartfill.svg";
+//     } else {
+//         heartImage.src = product.heart;
+//     }
+// }
+// /* ==================================================
+//    SECOND CARD CART
+// ================================================== */
+// function cartCard4Product(id) {
+//     const product = card4.find( item => item.id === id);
+//     if (!product) {
+//         return;
+//     }
+//     console.log("Cart:", product.name);
+// }
+// /* ==================================================
+//    DISPLAY SECOND CARDS
+// ================================================== */
+// displayCard4();
 
 
 
 
-const priceRangeInput = document.getElementById("priceRange");
-const priceValueLabel = document.getElementById("priceValue");
-const productGrid = document.getElementById("productGrid");
+// const priceRangeInput = document.getElementById("priceRange");
+// const priceValueLabel = document.getElementById("priceValue");
+// const productGrid = document.getElementById("productGrid");
 
-// 1. Function to render products dynamically to the DOM
-function displayProducts(filteredProducts) {
-  productGrid.innerHTML = filteredProducts.map(carddetails => `
-    <div class="product-card">
-      <h3>${carddetails.name}</h3>
-      <p>Price: $${carddetails.offer}</p>
-    </div>
-  `).join('');
-}
+// // 1. Function to render products dynamically to the DOM
+// function displayProducts(filteredProducts) {
+//   productGrid.innerHTML = filteredProducts.map(carddetails => `
+//     <div class="product-card">
+//       <h3>${carddetails.name}</h3>
+//       <p>Price: $${carddetails.offer}</p>
+//     </div>
+//   `).join('');
+// }
 
-// 2. Core filtering function using Array.filter()
-function filterProductsByPrice(maxPrice) {
-  // Keeps items where the price is less than or equal to the slider value
-  const filtered = carddetails.filter(carddetails => carddetails.offer <= maxPrice);
-  displayProducts(filtered);
-}
+// // 2. Core filtering function using Array.filter()
+// function filterProductsByPrice(maxPrice) {
+//   // Keeps items where the price is less than or equal to the slider value
+//   const filtered = carddetails.filter(carddetails => carddetails.offer <= maxPrice);
+//   displayProducts(filtered);
+// }
 
-// 3. Event listener to handle range changes in real-time
-priceRangeInput.addEventListener("input", (event) => {
-  const currentMaxPrice = Number(event.target.value);
+// // 3. Event listener to handle range changes in real-time
+// priceRangeInput.addEventListener("input", (event) => {
+//   const currentMaxPrice = Number(event.target.value);
   
-  // Update the UI label text
-  priceValueLabel.textContent = currentMaxPrice;
+//   // Update the UI label text
+//   priceValueLabel.textContent = currentMaxPrice;
   
-  // Trigger the filtering logic
-  filterProductsByPrice(currentMaxPrice);
-});
+//   // Trigger the filtering logic
+//   filterProductsByPrice(currentMaxPrice);
+// });
 
-// Initial load: Display all products on page load
-displayProducts(products);
+// // Initial load: Display all products on page load
+// displayProducts(products);
+
+
+
+
+
+

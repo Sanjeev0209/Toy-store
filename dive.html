@@ -1,56 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scalloped Edge - Method 3 (CSS Mask)</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Toy Store - Login & Signup</title>
 
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: "Poppins", "Comic Sans MS", "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #FFB6C1, #FFE4E1, #E0FFFF, #98FB98);
+    background-size: 400% 400%;
+    animation: toyBgAnimation 12s ease infinite;
+}
+
+@keyframes toyBgAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.auth-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 1050px;
+    min-height: 650px;
+    background: #FFFFFF;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    border: 6px solid #FFF0F5;
+}
+
+/* Both forms remain visible on desktop */
+.form-panel {
+    width: 50%;
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    background: #FFFFFF;
+}
+
+.signup-panel {
+    order: 1;
+}
+
+.login-panel {
+    order: 2;
+}
+
+.form-panel form {
+    width: 100%;
+    max-width: 360px;
+}
+
+/* Interactive Toy Selector Banner inside Form */
+.toy-picker {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.toy-chip {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #F0F8FF;
+    border: 2px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toy-chip:hover {
+    transform: scale(1.2) rotate(10deg);
+    background: #FFF0F5;
+    border-color: #FF69B4;
+    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.3);
+}
+
+h1 {
+    font-size: 28px;
+    color: #33334e;
+    margin-bottom: 6px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #7c7c9c;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 13px;
+    color: #4A4A6A;
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #E8E8F0;
+    background: #FAF9FE;
+    border-radius: 14px;
+    font-size: 14px;
+    outline: none;
+    transition: all .3s ease;
+}
+
+input:focus {
+    border-color: #FF6B8B;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(255, 107, 139, 0.18);
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 60px;
+}
+
+.show-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: #FF6B8B;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.hint {
+    display: block;
+    color: #8E8EA8;
+    font-size: 11px;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 14px;
+    color: white;
+    background: linear-gradient(135deg, #FF6B8B, #FF9E7D);
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .3s ease;
+    box-shadow: 0 8px 20px rgba(255, 107, 139, 0.35);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(255, 107, 139, 0.45);
+}
+
+.message {
+    margin-top: 12px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+    text-align: center;
+    font-weight: 600;
+}
+
+.mobile-switch {
+    display: none;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+}
+
+.mobile-switch a {
+    color: #FF6B8B;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Animated design overlay */
+.overlay {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #4E9F3D, #1E88E5, #9C27B0);
+    transition: left .65s cubic-bezier(.65, 0, .35, 1);
+    overflow: hidden;
+}
+
+.overlay::before,
+.overlay::after {
+    content: "";
+    position: absolute;
+    border: 3px dashed rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+}
+
+.overlay::before {
+    width: 260px;
+    height: 260px;
+    top: -80px;
+    left: -80px;
+}
+
+.overlay::after {
+    width: 320px;
+    height: 320px;
+    right: -100px;
+    bottom: -100px;
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+}
+
+.logo {
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    backdrop-filter: blur(5px);
+}
+
+/* Interactive Main Toy Display */
+.toy-showcase {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.toy-showcase:hover {
+    transform: rotate(10deg) scale(1.1);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.overlay h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.overlay p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.outline-btn {
+    padding: 12px 36px;
+    border: 2px solid white;
+    border-radius: 30px;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.outline-btn:hover {
+    background: white;
+    color: #FF6B8B;
+    transform: scale(1.05);
+}
+
+.overlay a {
+    color: #FFFFFF;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.overlay a:hover {
+    color: #FFE926;
+}
+
+/* Slide the overlay to the right */
+.auth-container.signup-mode .overlay {
+    left: 50%;
+    background: linear-gradient(135deg, #FF758C, #FF7EB3, #FFC3A0);
+}
+
+/* Mobile layout */
+@media (max-width: 720px) {
     body {
-      background-color: #ec3c3c;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, sans-serif;
+        padding: 15px;
     }
 
-
-
-    /* Blue top container */
-    .scallop-banner {
-      width: 100%;
-      height: 20px;
-      background-color: #0e83b5; /* Matches the exact blue color */
-
-      /* SVG mask repeat along the bottom edge */
-      -webkit-mask: radial-gradient(circle 25px at 25px -10px, transparent 100%, #000 100%) 0 0 / 50px 100% repeat-x;
-      mask: radial-gradient(circle 25px at 25px -10px, transparent 100%, #000 100%) 0 0 / 50px 100% repeat-x;
+    .auth-container {
+        max-width: 440px;
+        min-height: auto;
+        flex-direction: column;
+        border-radius: 24px;
     }
 
-    /* Alternative pure SVG Data-URI mask approach for ultra-sharp scalloped bottom: */
-    .scallop-banner-svg-mask {
-      width: 100%;
-      height: 200px;
-      background-color: #0e83b5;
-      
-      /* Pure SVG mask applied to the bottom border */
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 25' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L100,0 L100,10 Q91.66,25 83.33,10 Q75,25 66.66,10 Q58.33,25 50,10 Q41.66,25 33.33,10 Q25,25 16.66,10 Q8.33,25 0,10 Z' fill='%23000'/%3E%3C/svg%3E");
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 25' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L100,0 L100,10 Q91.66,25 83.33,10 Q75,25 66.66,10 Q58.33,25 50,10 Q41.66,25 33.33,10 Q25,25 16.66,10 Q8.33,25 0,10 Z' fill='%23000'/%3E%3C/svg%3E");
-      
-      -webkit-mask-size: 100% 100%;
-      mask-size: 100% 100%;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
+    .form-panel {
+        width: 100%;
+        flex: 0 0 100%;
+        padding: 30px 20px;
     }
-  </style>
+
+    .auth-container .overlay {
+        display: none;
+    }
+
+    .auth-container:not(.signup-mode) .signup-panel {
+        display: none;
+    }
+
+    .auth-container.signup-mode .login-panel {
+        display: none;
+    }
+
+    .mobile-switch {
+        display: block;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+</style>
 </head>
 <body>
+<div class="auth-container" id="authContainer">
+<script>
+    (function () {
+        var params = new URLSearchParams(window.location.search);
+        var hash = (window.location.hash || "").toLowerCase();
+        var mode = (params.get("mode") || params.get("action") || params.get("form") || "").toLowerCase();
+        if (mode === "signup" || mode === "register" || hash === "#signup" || hash === "#register") {
+            document.getElementById("authContainer").classList.add("signup-mode");
+        }
+    })();
+</script>
+    <!-- LEFT: SIGNUP -->
+    <section class="form-panel signup-panel">
+        <form id="signupForm">
+            <h1>Create Account</h1>
+            <p class="subtitle">Join Baby Toy Store & unlock magical playtimes!</p>
+            <label for="signupName">Full Name</label>
+            <input type="text" id="signupName"
+                   placeholder="Enter your name" required>
+            <label for="signupUsername">Email Address</label>
+            <input type="email" id="signupUsername"
+                   placeholder="Enter your email" required>
+            <label for="signupPassword">Password</label>
+            <div class="password-box">
+                <input type="password" id="signupPassword"
+                       placeholder="Create a password"
+                       minlength="8" required>
+                <button type="button" class="show-password"
+                        data-target="signupPassword">Show</button>
+            </div>
+            <small class="hint">
+                Minimum 8 characters, one uppercase letter, one number
+                and one special character.
+            </small>
+            <button type="submit" class="submit-btn">Create Account</button>
+            <p id="signupMessage" class="message" aria-live="polite"></p>
+            <p class="mobile-switch">
+                Already have an account?
+                <a href="#" id="mobileLogin">Login</a>
+            </p>
+        </form>
+    </section>
 
-  <!-- Scalloped Header Banner -->
-  <div class="scallop-banner"></div>
+    <!-- RIGHT: LOGIN -->
+    <section class="form-panel login-panel">
+        <form id="loginForm">
+            <h1>Welcome Back!</h1>
+            <p class="subtitle">Login to continue exploring fun & Learn baby toys.</p>
 
+            <label for="loginUsername">Email Address</label>
+            <input type="email" id="loginUsername"
+                   placeholder="Enter your email" required>
+
+            <label for="loginPassword">Password</label>
+            <div class="password-box">
+                <input type="password" id="loginPassword"
+                       placeholder="Enter your password" required>
+                <button type="button" class="show-password"
+                        data-target="loginPassword">Show</button>
+            </div>
+
+            <button type="submit" class="submit-btn">Login</button>
+
+            <p id="loginMessage" class="message" aria-live="polite"></p>
+
+            <p class="mobile-switch">
+                Don't have an account?
+                <a href="#" id="mobileSignup">Sign up</a>
+            </p>
+        </form>
+    </section>
+
+    <!-- SLIDING DESIGN -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <div class="logo">🍼 Baby Toy Store</div>
+
+            <!-- Interactive Main Toy Display -->
+            <div class="toy-showcase" id="interactiveToy" title="Click to swap toy!">🧸</div>
+
+            <h2 id="overlayTitle">Hello, Friend!</h2>
+            <p id="overlayText">
+                Create an account and discover amazing toys for your little ones.
+            </p>
+
+            <button type="button" class="outline-btn" id="switchBtn">
+                Switch to Signup
+            </button>
+            <br><br>
+            <p><a href="index.html">back-></a></p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ========================================
+// 1. INTERACTIVE TOY SWAPPER & SLIDING DESIGN
+// ========================================
+const authContainer = document.getElementById("authContainer");
+const switchBtn = document.getElementById("switchBtn");
+const overlayTitle = document.getElementById("overlayTitle");
+const overlayText = document.getElementById("overlayText");
+const interactiveToy = document.getElementById("interactiveToy");
+
+const toysList = ["🧸", "🚀", "🚂", "🤖", "🎨", "🦄", "🚗", "🦆"];
+let currentToyIdx = 0;
+
+// Swap toy icon when user clicks the main toy badge
+interactiveToy.addEventListener("click", () => {
+    currentToyIdx = (currentToyIdx + 1) % toysList.length;
+    interactiveToy.textContent = toysList[currentToyIdx];
+});
+
+let signupMode = false;
+
+function changeMode(showSignup, updateUrl = true) {
+    signupMode = showSignup;
+
+    authContainer.classList.toggle("signup-mode", signupMode);
+
+    overlayTitle.textContent = signupMode
+        ? "Welcome Back!"
+        : "Hello, Little One!";
+
+    overlayText.textContent = signupMode
+        ? "Your favorite toy box is waiting for you. Log in and play!"
+        : "Create an account and discover amazing toys for your little ones.";
+
+    switchBtn.textContent = signupMode
+        ? "Switch to Login"
+        : "Switch to Signup";
+
+    interactiveToy.textContent = signupMode ? "🚀" : "🧸";
+
+    document.getElementById("signupMessage").textContent = "";
+    document.getElementById("loginMessage").textContent = "";
+
+    if (updateUrl && window.history && window.history.replaceState) {
+        const mode = signupMode ? "signup" : "login";
+        const newUrl = window.location.pathname + "?mode=" + mode;
+        window.history.replaceState(null, "", newUrl);
+    }
+}
+
+// Check URL parameters and hash to set initial mode
+function checkInitialMode() {
+    const params = new URLSearchParams(window.location.search);
+    const hash = (window.location.hash || "").toLowerCase();
+    const mode = (params.get("mode") || params.get("action") || params.get("form") || "").toLowerCase();
+    const isSignup = mode === "signup" || mode === "register" || hash === "#signup" || hash === "#register";
+    changeMode(isSignup, false);
+}
+
+checkInitialMode();
+
+window.addEventListener("popstate", () => {
+    checkInitialMode();
+});
+
+switchBtn.addEventListener("click", () => {
+    changeMode(!signupMode);
+});
+
+document.getElementById("mobileLogin").addEventListener("click", e => {
+    e.preventDefault();
+    changeMode(false);
+});
+
+document.getElementById("mobileSignup").addEventListener("click", e => {
+    e.preventDefault();
+    changeMode(true);
+});
+
+
+// ========================================
+// 2. SHOW / HIDE PASSWORD
+// ========================================
+document.querySelectorAll(".show-password").forEach(button => {
+    button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.target);
+
+        input.type = input.type === "password" ? "text" : "password";
+        button.textContent = input.type === "password" ? "Show" : "Hide";
+    });
+});
+
+
+// ========================================
+// 3. LOCAL STORAGE SETTINGS
+// ========================================
+const USERS_KEY = "users";
+const EXPIRY_TIME = 5 * 60 * 1000; // 5 minutes
+
+
+// Get saved users
+function getUsers() {
+    try {
+        const users = JSON.parse(
+            localStorage.getItem(USERS_KEY) || "[]"
+        );
+
+        return Array.isArray(users) ? users : [];
+    } catch {
+        return [];
+    }
+}
+
+
+// Remove expired users
+function removeExpiredUsers() {
+    const currentTime = Date.now();
+
+    const activeUsers = getUsers().filter(user => {
+        return user.expiry && currentTime < user.expiry;
+    });
+
+    localStorage.setItem(USERS_KEY, JSON.stringify(activeUsers));
+
+    return activeUsers;
+}
+
+
+// ========================================
+// 4. SIGNUP
+// ========================================
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("signupName").value.trim();
+
+    const email = document.getElementById("signupUsername")
+        .value.trim().toLowerCase();
+
+    const password = document.getElementById("signupPassword").value;
+
+    const message = document.getElementById("signupMessage");
+
+    message.textContent = "";
+
+    // Password: 8+ characters, uppercase, number, special character
+    const passwordPattern =
+        /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/;
+
+    if (!passwordPattern.test(password)) {
+        message.style.color = "#d93025";
+        message.textContent =
+            "Password must contain at least 8 characters, one uppercase letter, one number and one special character.";
+        return;
+    }
+
+    // Remove expired accounts first
+    const users = removeExpiredUsers();
+
+    // Prevent duplicate email registration
+    const exists = users.some(user => user.email === email);
+
+    if (exists) {
+        message.style.color = "#d93025";
+        message.textContent = "This email is already registered!";
+        return;
+    }
+
+    // Create user with expiry time
+    const newUser = {
+        name: name,
+        email: email,
+        password: password,
+        expiry: Date.now() + EXPIRY_TIME
+    };
+
+    users.push(newUser);
+
+    // Save to localStorage
+    try {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+        message.style.color = "#16834a";
+        message.textContent =
+            "Registration successful! Your account expires in 5 minutes.";
+
+        this.reset();
+
+        // Switch to login form automatically after short delay
+        setTimeout(() => {
+            changeMode(false);
+        }, 1500);
+    } catch (error) {
+        message.style.color = "#d93025";
+        message.textContent = "Unable to save account in this browser.";
+    }
+});
+
+
+// ========================================
+// 5. LOGIN
+// ========================================
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("loginUsername")
+        .value.trim().toLowerCase();
+
+    const password = document.getElementById("loginPassword").value;
+
+    const message = document.getElementById("loginMessage");
+
+    message.textContent = "";
+
+    // Remove expired users before checking login
+    const users = removeExpiredUsers();
+
+    const user = users.find(user =>
+        user.email === email &&
+        user.password === password
+    );
+
+    if (user) {
+        message.style.color = "#16834a";
+        message.textContent =
+            "Login successful! Welcome back, " + user.name + "!";
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 500);
+    } else {
+        message.style.color = "#d93025";
+        message.textContent =
+            "Invalid email or password, or your account has expired.";
+    }
+});
+
+
+// ========================================
+// 6. CLEAN EXPIRED ACCOUNTS ON PAGE LOAD
+// ========================================
+removeExpiredUsers();
+
+</script>
 </body>
 </html>

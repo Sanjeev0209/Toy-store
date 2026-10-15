@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby-Toy-Store</title>
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,11 +30,11 @@
                 <p>Free  free shipping with over $150</p>
             </div>
             <div class="headerlogin">
-              <div><p><a href="login.html">Login</a> </p></div>
-                <div><p><a href="signup.html">Register</a> </p></div>
+              <div><p><a href="dive.html?mode=login">Login</a> </p></div>
+                <div><p><a href="dive.html?mode=signup">Register</a> </p></div>
             </div>
         </div>
-        <div class="navbar">
+        <div class="navbar" id="navbar">
             <div class="logo">
                 <img src="img/image 2.png" alt="">
             </div>
@@ -50,14 +47,56 @@
                </div> 
             
             <div class="searchbar">
-                <img src="svg/shopping-cart.svg" class="cardlogo">
+               
                 <div class="search">
                     <input type="text" placeholder="Search"></input><div class="searchsvg"><img src="svg/search.svg" alt=""></div>
                 </div>
+
+                <div class="nav-cart" onclick="toggleCart(event)" >
+                    <img src="svg/shopping-cart.svg" alt="Cart">
+                    <span id="cart-count">0</span>
+                    <div class="cart-toast" id="cart-toast">
+                        <span class="cart-toast-check">✓</span>
+                        <span class="cart-toast-text">Added to cart successfully!</span>
+                    </div>
+                </div>
             </div>
-             <div class="hidebtn"  id="hidebtn"><img src="svg/list.svg " alt=""></div>
+
+            <!-- Scroll-in Login / Register in navbar -->
+            <div class="nav-auth" id="navAuth">
+                <a href="dive.html?mode=login" class="nav-auth-login">Login</a>
+                <a href="dive.html?mode=signup" class="nav-auth-register">Register</a>
             </div>
+
+            <div class="hidebtn"  id="hidebtn"><img src="svg/list.svg " alt=""></div>
+        </div>
     </header>
+
+<!-- ------------------------------------------------------------------------------------------------- -->
+    <!-- cart -->
+
+
+  <div class="cart-popup" id="cart-popup" onclick="event.stopPropagation()">
+        <div class="cart-header">
+            <h2>My Cart</h2>
+            <button class="close-cart" onclick="closeCart()">
+            ×
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items" ></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="clear-cart" onclick="clearCart(event)">Clear Cart</button>
+            <!-- <button class="clear-cart">buy</button> -->
+        </div>
+    </div>
+
+    <!-- -------------------------------------------------------------------------------------- -->
+
+
     <section class="section1">
         <div class="hero">
             <p class="herrosection">Play, learn & Grow</p>
@@ -76,14 +115,14 @@
     <section >   
         <div class="section3">
             <div class="section3_1">
-                <h2>Top picks for your littlt ones</h2>
+                <h2>Top picks for your little ones</h2>
                 <div class="section3_2">
                     <p>Featured</p>
                     <p>Best seller</p>
                     <p>New arrivals</p>
                 </div>
             </div>
-            <div><div id="card" class="disjs"></div></div>
+            <div><div id="products" class="products"></div></div>
         </div>
     </section>
     <br><br>
@@ -98,8 +137,8 @@
             <div class="section3_1">
                 <h2>Customer Loves</h2>
                 <div >
-                    <p>Popular <span>  </span> product</p>
-                     <div id="card4" class="disjs"></div>
+                    <p>Popular <span>  </span> product</p><br><br>
+                   <div id="sale-true" class="sale-true"></div>
                 </div><br>           
             </div>
            </div>  
@@ -205,6 +244,610 @@
     </footer>
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
+     <script>
+        /* =================================
+           PRODUCTS
+        ================================= */
+        const products = [
+            {
+                id: 1,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11.png",
+                price: 29,
+                oldPrice: 39,
+                sale: true,
+                star: "./svg/Vector (1).png",
+            },
+            {
+                id: 2,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11 (1).png",
+                price: 29,
+                oldPrice: 39,
+                sale: true,
+                star: "./svg/Vector.png",
+            },
+            {
+                id: 3,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11 (2).png",
+                price: 39,
+                oldPrice: 0,
+                sale: false,
+                star: "svg/Vector (1).png",
+            },
+            {
+                id: 4,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11 (3).png",
+                price: 39,
+                oldPrice: 0,
+                sale: false,
+                star: "svg/Vector (1).png",
+            },
+            {
+                id: 5,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11 (4).png",
+                price: 29,
+                oldPrice: 39,
+                sale: true,
+                star: "svg/Vector (1).png",
+            },
+            {
+                id: 6,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11 (5).png",
+                price: 39,
+                oldPrice: 0,
+                sale: false,
+                star: "svg/Vector (1).png",
+            },
+            {
+                id: 7,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11 (6).png",
+                price: 29,
+                oldPrice: 39,
+                sale: true,
+                star: "svg/Vector (1).png",
+            },
+            {
+                id: 8,
+                name: "Blocks shape-sorting Toy",
+                img: "toppicks/image 11 (7).png",
+                price: 39,
+                oldPrice: 0,
+                sale: false,
+                star: "./svg/Vector.png",
+            }
+        ];
+
+        /* =================================
+           CART FROM LOCAL STORAGE
+        ================================= */
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        /* =================================
+           DISPLAY PRODUCTS
+        ================================= */
+        function displayProducts() {
+            const productsContainer = document.getElementById("products");
+            productsContainer.innerHTML = "";
+            products.forEach(product => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <div class="product-image">
+                        ${
+                            product.sale
+                            ? `<div class="sale">
+                                    SALE
+                               </div>`
+                            : ""
+                        }
+                        <img src="${product.img}" alt="${product.name}">
+                        <div class="icons">
+                            <!-- LIKE -->
+                            <button class="icon-btn" onclick="likeProduct(this)">
+                                <img  src="svg/heart.svg"  alt="Like"  >
+                            </button>
+                            <!-- CART -->
+                            <button class="icon-btn cart-btn" onclick="handleAddToCart(${product.id}, this, event)" title="Add to Cart">
+                                <img src="svg/shopping-cart.svg" alt="Cart" class="cart-icon-img">
+                                <span class="cart-spinner"></span>
+                                <span class="cart-check-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3> ${product.name}</h3>
+                        <div class="price">
+                            <span class="offer">
+                                $${product.price.toFixed(2)}
+                            </span>
+                            ${
+                                product.oldPrice
+                                ? `
+                                    <span class="old-price">
+                                        $${product.oldPrice.toFixed(2)}
+                                    </span>
+                                  `
+                                : ""
+                            }
+                        </div>
+                        <div class="starjs">
+                             <img src="${product.star}" alt="">
+                             <img src="${product.star}" alt="">
+                             <img src="${product.star}" alt="">
+                             <img src="${product.star}" alt="">
+                             <img src="${product.star}" alt="">
+                         </div>
+                `;
+                productsContainer.appendChild(card);
+            });
+        }
+/* =================================
+   DISPLAY SALE PRODUCTS
+================================= */
+function displaySaleProducts() {
+    const saleContainer = document.getElementById("sale-true");
+    saleContainer.innerHTML = "";
+    const saleProducts = products.filter(product => product.sale === true);
+    saleProducts.forEach(product => {
+        saleContainer.innerHTML += `
+            <div class="card">
+                <div class="product-image">
+                    <div class="sale">SALE</div>
+                    <img src="${product.img}" alt="${product.name}">
+                    <div class="icons">
+                        <!-- LIKE BUTTON -->
+                        <button class="icon-btn"
+                            onclick="likeProduct(this)">
+                            <img src="svg/heart.svg" alt="Like">
+                        </button>
+                        <!-- ADD TO CART BUTTON -->
+                        <button class="icon-btn cart-btn"
+                            onclick="handleAddToCart(${product.id}, this, event)" title="Add to Cart">
+                            <img src="svg/shopping-cart.svg" alt="Cart" class="cart-icon-img">
+                            <span class="cart-spinner"></span>
+                            <span class="cart-check-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h3>${product.name}</h3>
+                    <div class="price">
+                        <span class="offer">
+                            $${product.price.toFixed(2)}
+                        </span>
+                        ${
+                            product.oldPrice
+                                ? `<span class="old-price">
+                                    $${product.oldPrice.toFixed(2)}
+                                   </span>`
+                                : ""
+                        }
+                    </div>
+                    <div class="starjs">
+                        <img src="${product.star}" alt="Rating">
+                        <img src="${product.star}" alt="Rating">
+                        <img src="${product.star}" alt="Rating">
+                        <img src="${product.star}" alt="Rating">
+                        <img src="${product.star}" alt="Rating">
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
+        /* =================================
+           LIKE PRODUCT
+        ================================= */
+        function likeProduct(button) {
+            const image = button.querySelector("img");
+            if (
+                image.src.includes("heartfill.svg")
+            ) {
+                image.src =
+                    "svg/heart.svg";
+            } else {
+                image.src =
+                    "svg/heartfill.svg";
+            }
+        }
+
+        /* =================================
+           ADD TO CART WITH CIRCLE SPINNER & TICK
+        ================================= */
+        function handleAddToCart(id, buttonEl, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            if (!buttonEl) {
+                addProduct(id);
+                return;
+            }
+
+            // Prevent double-clicks while loading or already added
+            if (buttonEl.classList.contains("loading") || buttonEl.classList.contains("success")) {
+                return;
+            }
+
+            // 1. Loading state with circular outerline spinner
+            buttonEl.classList.add("loading");
+
+            // 2. After 600ms, change to tick and add product
+            setTimeout(() => {
+                buttonEl.classList.remove("loading");
+                buttonEl.classList.add("success");
+
+                // Execute product addition
+                addProduct(id);
+
+                // 3. After 1.5s showing tick, reset back to cart icon
+                setTimeout(() => {
+                    buttonEl.classList.remove("success");
+                }, 1500);
+            }, 600);
+        }
+
+        /* =================================
+           ADD PRODUCT
+        ================================= */
+        function addProduct(id) {
+            const product = products.find(item => item.id === id );
+            if (!product) {
+                return;
+            }
+            const existing = cartItems.find(item => item.id === id );
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cartItems.push({
+                    id: product.id,
+                    name: product.name,
+                    img: product.img,
+                    price: product.price,
+                    quantity: 1
+                });
+            }
+            saveCart();
+            updateCartCount();
+            displayCart();
+
+            /* Show 3-second success message directly under cart logo in navbar */
+            showCartToast("Added to cart successfully!");
+        }
+
+        /* =================================
+           CART SUCCESS NOTIFICATION (3 SECONDS)
+        ================================= */
+        let cartToastTimer = null;
+        function showCartToast(message = "Added to cart successfully!") {
+            const toast = document.getElementById("cart-toast");
+            if (!toast) return;
+
+            const textEl = toast.querySelector(".cart-toast-text");
+            if (textEl) {
+                textEl.textContent = message;
+            }
+
+            toast.classList.add("show");
+
+            if (cartToastTimer) {
+                clearTimeout(cartToastTimer);
+            }
+
+            cartToastTimer = setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+        /* =================================
+           SAVE CART
+        ================================ */
+        function saveCart() {
+            localStorage.setItem( "cartItems", JSON.stringify(cartItems)
+            );
+        }
+        /* =================================
+           UPDATE CART NUMBER
+        ================================= */
+        function updateCartCount() {
+            let count = 0;
+            cartItems.forEach(item => {
+                count += item.quantity;
+            });
+            const badge = document.getElementById("cart-count");
+            if (badge) {
+                badge.innerText = count;
+                badge.classList.remove("badge-pop");
+                void badge.offsetWidth;
+                badge.classList.add("badge-pop");
+            }
+        }
+        /* =================================
+           DISPLAY CART
+        ================================= */
+        /* =================================
+           TRIGGER BOUNCE ON CART IMAGE
+        ================================= */
+        function animateCartImage(imageEl) {
+            if (!imageEl) return;
+            imageEl.classList.remove("animate-click");
+            void imageEl.offsetWidth; // Force reflow
+            imageEl.classList.add("animate-click");
+            setTimeout(() => {
+                imageEl.classList.remove("animate-click");
+            }, 550);
+        }
+
+        /* =================================
+           DISPLAY CART
+        ================================= */
+        function displayCart() {
+            const cartContainer = document.getElementById("cart-items");
+            cartContainer.innerHTML = "";
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <div style="font-size: 38px; margin-bottom: 8px;">🧸</div>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some fun toys!</p>
+                    </div>
+                `;
+                document.getElementById("cart-total").innerText = "$0.00";
+                return;
+            }
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.price * item.quantity;
+                cartContainer.innerHTML += `
+                    <div class="cart-item" data-id="${item.id}">
+                        <div class="cart-item-image" onclick="animateCartImage(this)" title="Click to animate!">
+                            <img src="${item.img}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <div class="cart-price" id="price-${item.id}">
+                                $${(item.price * item.quantity).toFixed(2)}
+                            </div>
+                            <div class="quantity">
+                                <button type="button" onclick="decreaseQuantity(${item.id}, event)" title="Decrease">
+                                    −
+                                </button>
+                                <span id="qty-${item.id}">
+                                    ${item.quantity}
+                                </span>
+                                <button type="button" onclick="increaseQuantity(${item.id}, event)" title="Increase">
+                                    +
+                                </button>
+                            </div>
+                            <button class="remove" type="button" onclick="removeProduct(${item.id}, event)">
+                                ✕ Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById("cart-total").innerText = "$" + total.toFixed(2);
+        }
+
+        /* =================================
+           INCREASE QUANTITY
+        ================================= */
+        function increaseQuantity(id, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            const item = cartItems.find(item => item.id === id);
+            if (!item) return;
+
+            item.quantity++;
+            saveCart();
+            updateCartCount();
+
+            // Update row in-place without closing popup
+            const row = document.querySelector(`.cart-item[data-id="${id}"]`);
+            if (row) {
+                const qtySpan = row.querySelector(`#qty-${id}`);
+                const priceDiv = row.querySelector(`#price-${id}`);
+                const imageEl = row.querySelector(".cart-item-image");
+
+                if (qtySpan) {
+                    qtySpan.textContent = item.quantity;
+                    qtySpan.classList.remove("qty-bump");
+                    void qtySpan.offsetWidth;
+                    qtySpan.classList.add("qty-bump");
+                }
+
+                if (priceDiv) {
+                    priceDiv.textContent = "$" + (item.price * item.quantity).toFixed(2);
+                    priceDiv.classList.remove("price-bump");
+                    void priceDiv.offsetWidth;
+                    priceDiv.classList.add("price-bump");
+                }
+
+                if (imageEl) {
+                    animateCartImage(imageEl);
+                }
+
+                let total = cartItems.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+                document.getElementById("cart-total").innerText = "$" + total.toFixed(2);
+            } else {
+                displayCart();
+            }
+        }
+
+        /* =================================
+           DECREASE QUANTITY
+        ================================= */
+        function decreaseQuantity(id, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            const item = cartItems.find(item => item.id === id);
+            if (!item) return;
+
+            if (item.quantity > 1) {
+                item.quantity--;
+                saveCart();
+                updateCartCount();
+
+                const row = document.querySelector(`.cart-item[data-id="${id}"]`);
+                if (row) {
+                    const qtySpan = row.querySelector(`#qty-${id}`);
+                    const priceDiv = row.querySelector(`#price-${id}`);
+                    const imageEl = row.querySelector(".cart-item-image");
+
+                    if (qtySpan) {
+                        qtySpan.textContent = item.quantity;
+                        qtySpan.classList.remove("qty-bump");
+                        void qtySpan.offsetWidth;
+                        qtySpan.classList.add("qty-bump");
+                    }
+
+                    if (priceDiv) {
+                        priceDiv.textContent = "$" + (item.price * item.quantity).toFixed(2);
+                        priceDiv.classList.remove("price-bump");
+                        void priceDiv.offsetWidth;
+                        priceDiv.classList.add("price-bump");
+                    }
+
+                    if (imageEl) {
+                        animateCartImage(imageEl);
+                    }
+
+                    let total = cartItems.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+                    document.getElementById("cart-total").innerText = "$" + total.toFixed(2);
+                } else {
+                    displayCart();
+                }
+            } else {
+                removeProduct(id, event);
+            }
+        }
+
+        /* =================================
+           REMOVE PRODUCT
+        ================================= */
+        function removeProduct(id, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            const row = document.querySelector(`.cart-item[data-id="${id}"]`);
+            if (row) {
+                row.classList.add("item-removing");
+                setTimeout(() => {
+                    cartItems = cartItems.filter(item => item.id !== id);
+                    saveCart();
+                    updateCartCount();
+                    displayCart();
+                }, 300);
+            } else {
+                cartItems = cartItems.filter(item => item.id !== id);
+                saveCart();
+                updateCartCount();
+                displayCart();
+            }
+        }
+
+        /* =================================
+           CLEAR CART
+        ================================= */
+        function clearCart(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            cartItems = [];
+            saveCart();
+            updateCartCount();
+            displayCart();
+        }
+        /* =================================
+           OPEN / CLOSE CART
+        ================================= */
+        function toggleCart(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const cart = document.getElementById("cart-popup");
+            if (!cart) return;
+
+            cart.classList.toggle("active");
+            if (cart.classList.contains("active")) {
+                displayCart();
+                // Hide success toast if cart is opened
+                const toast = document.getElementById("cart-toast");
+                if (toast) toast.classList.remove("show");
+            }
+        }
+
+        function closeCart() {
+            const cart = document.getElementById("cart-popup");
+            if (cart) {
+                cart.classList.remove("active");
+            }
+        }
+
+        /* Close cart when clicking anywhere outside */
+        document.addEventListener("click", function(event) {
+            const cart = document.getElementById("cart-popup");
+            const navCart = document.querySelector(".nav-cart");
+
+            if (!cart || !navCart) return;
+
+            if (cart.classList.contains("active")) {
+                // If clicked outside cart-popup and outside nav-cart button
+                if (!cart.contains(event.target) && !navCart.contains(event.target)) {
+                    closeCart();
+                }
+            }
+        });
+
+        /* Close on ESC key */
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeCart();
+            }
+        });
+
+        /* =================================
+           STICKY NAVBAR SCROLL HANDLER
+           (Scroll in Login & Register buttons)
+        ================================= */
+        function handleNavbarScroll() {
+            const navbar = document.getElementById("navbar") || document.querySelector(".navbar");
+            if (!navbar) return;
+
+            if (window.scrollY > 45) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        }
+        window.addEventListener("scroll", handleNavbarScroll);
+        handleNavbarScroll();
+
+        /* =================================
+           PAGE LOAD
+        ================================= */
+        displayProducts();
+        displaySaleProducts(); 
+        updateCartCount();
+        displayCart();
+    </script>
 </body>
 <script>
         const swiper = new Swiper(".mySwiper", {
