@@ -131,7 +131,7 @@ body{
 }
 a, p{
     font-family:  "Baloo Bhaina 2", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 h2{
     font-family: "Baloo Bhaina 2", sans-serif;
@@ -760,6 +760,8 @@ header, .headfix{
     padding-left: 30px;
     gap: 40px;
 }
+
+
 .categories{
     max-width: 280px;
 }

@@ -1,279 +1,239 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="stylesheet" href="signup.css">
+    <title>Animated Grid Cards</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 25px;
+            padding: 30px;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+
+            /* Initial animation position */
+            opacity: 0;
+            transform: translateX(-100px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        /* Card animation */
+        .card.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+            color: #222;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .card button {
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #6c4cff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #4b30d8;
+        }
+
+        /* Tablet */
+        @media (max-width: 900px) {
+            .card-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 500px) {
+            .card-container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .card img {
+                height: 220px;
+            }
+        }
+    </style>
 </head>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
 
-body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-.signup-box {
-    width: 400px;
-    background: white;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-.subtitle {
-    text-align: center;
-    color: #777;
-    margin-bottom: 25px;
-}
-
-.input-box {
-    margin-bottom: 16px;
-}
-
-.input-box label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #333;
-}
-
-.input-box input {
-    width: 90%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 15px;
-    outline: none;
-}
-
-.input-box input:focus {
-    border-color: #667eea;
-}
-
-.input-box span {
-    display: block;
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
-    min-height: 14px;
-}
-
-button {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 7px;
-    background: #667eea;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #5568d9;
-}
-
-#success {
-    text-align: center;
-    color: green;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-.login {
-    text-align: center;
-    margin-top: 20px;
-    color: #666;
-}
-
-.login a {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Mobile */
-@media (max-width: 500px) {
-
-    .signup-box {
-        width: 90%;
-        padding: 25px;
-    }
-
-} 
-</style>
 <body>
 
-    <div class="signup-box">
+    <header>
+        <h1>Animated Product Cards</h1>
+        <p>Scroll down to see the animation</p>
+    </header>
 
-        <h2>Create Account</h2>
-        <p class="subtitle">Sign up to create your account</p>
+    <div class="card-container">
 
-        <form id="signupForm">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Watch">
+            <h3>Smart Watch</h3>
+            <p>A stylish watch for your everyday needs.</p>
+            <button>View More</button>
+        </div>
 
-            <div class="input-box">
-                <label>Full Name</label>
-                <input type="text" id="name" placeholder="Enter your name">
-                <span id="nameError"></span>
-            </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Headphones">
+            <h3>Headphones</h3>
+            <p>Enjoy your favourite music with clear sound.</p>
+            <button>View More</button>
+        </div>
 
-            <div class="input-box">
-                <label>Email</label>
-                <input type="email" id="email" placeholder="Enter your email">
-                <span id="emailError"></span>
-            </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Shoes">
+            <h3>Running Shoes</h3>
+            <p>Comfortable shoes for everyday activities.</p>
+            <button>View More</button>
+        </div>
 
-            <div class="input-box">
-                <label>Phone Number</label>
-                <input type="text" id="phone" placeholder="Enter phone number">
-                <span id="phoneError"></span>
-            </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500" alt="Camera">
+            <h3>Camera</h3>
+            <p>Capture and save your favourite moments.</p>
+            <button>View More</button>
+        </div>
 
-            <div class="input-box">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Enter password">
-                <span id="passwordError"></span>
-            </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500" alt="Smartwatch">
+            <h3>Digital Watch</h3>
+            <p>A modern design with a simple interface.</p>
+            <button>View More</button>
+        </div>
 
-            <div class="input-box">
-                <label>Confirm Password</label>
-                <input type="password" id="confirmPassword" placeholder="Confirm password">
-                <span id="confirmError"></span>
-            </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500" alt="Audio headphones">
+            <h3>Audio Headset</h3>
+            <p>Listen comfortably at home or while travelling.</p>
+            <button>View More</button>
+        </div>
 
-            <button type="submit">Sign Up</button>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500" alt="Clothing">
+            <h3>Fashion Wear</h3>
+            <p>Explore a casual style for everyday wear.</p>
+            <button>View More</button>
+        </div>
 
-            <p id="success"></p>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500" alt="Sneakers">
+            <h3>Sport Sneakers</h3>
+            <p>Discover comfortable sneakers for daily use.</p>
+            <button>View More</button>
+        </div>
 
-            <p class="login">
-                Already have an account?
-                <a href="dive.html?mode=login">Login</a>
-            </p>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=500" alt="Chair">
+            <h3>Modern Chair</h3>
+            <p>A clean design for your living space.</p>
+            <button>View More</button>
+        </div>
 
-        </form>
-  <iframe
-        src="https://www.google.com/maps/embed?pb=YOUR_MAP_CODE"
-        width="100%"
-        height="400"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Music headphones">
+            <h3>Music Collection</h3>
+            <p>Enjoy a comfortable listening experience.</p>
+            <button>View More</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Classic watch">
+            <h3>Classic Watch</h3>
+            <p>A timeless accessory for everyday outfits.</p>
+            <button>View More</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Sport shoes">
+            <h3>Sport Shoes</h3>
+            <p>Find your next everyday footwear style.</p>
+            <button>View More</button>
+        </div>
+
     </div>
 
-    <script src="signup.js"></script>
-<script>
-    
-const form = document.getElementById("signupForm");
+    <script>
+        const cards = document.querySelectorAll(".card");
 
-form.addEventListener("submit", function (event) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    } else {
+                        entry.target.classList.remove("show");
+                    }
+                });
+            },
+            {
+                threshold: 0.15
+            }
+        );
 
-    event.preventDefault();
+        cards.forEach((card, index) => {
+            // Small delay between cards
+            card.style.transitionDelay = `${(index % 4) * 100}ms`;
+            observer.observe(card);
+        });
+    </script>
 
-    // Get values
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-
-    // Error elements
-    const nameError = document.getElementById("nameError");
-    const emailError = document.getElementById("emailError");
-    const phoneError = document.getElementById("phoneError");
-    const passwordError = document.getElementById("passwordError");
-    const confirmError = document.getElementById("confirmError");
-    const success = document.getElementById("success");
-
-    // Clear old messages
-    nameError.textContent = "";
-    emailError.textContent = "";
-    phoneError.textContent = "";
-    passwordError.textContent = "";
-    confirmError.textContent = "";
-    success.textContent = "";
-
-    let valid = true;
-
-    // Name validation
-    if (name === "") {
-        nameError.textContent = "Name is required";
-        valid = false;
-    }
-
-    // Email validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (email === "") {
-        emailError.textContent = "Email is required";
-        valid = false;
-    }
-    else if (!emailPattern.test(email)) {
-        emailError.textContent = "Enter a valid email";
-        valid = false;
-    }
-
-    // Phone validation
-    const phonePattern = /^[0-9]{10}$/;
-
-    if (phone === "") {
-        phoneError.textContent = "Phone number is required";
-        valid = false;
-    }
-    else if (!phonePattern.test(phone)) {
-        phoneError.textContent = "Enter 10 digit phone number";
-        valid = false;
-    }
-
-    // Password validation
-    if (password === "") {
-        passwordError.textContent = "Password is required";
-        valid = false;
-    }
-    else if (password.length < 6) {
-        passwordError.textContent = "Password must be at least 6 characters";
-        valid = false;
-    }
-
-    // Confirm password
-    if (confirmPassword === "") {
-        confirmError.textContent = "Confirm your password";
-        valid = false;
-    }
-    else if (password !== confirmPassword) {
-        confirmError.textContent = "Passwords do not match";
-        valid = false;
-    }
-
-    // Success
-    if (valid) {
-
-        success.textContent = "Signup successful!";
-
-        form.reset();
-    }
-
-});
-
-
-</script>
 </body>
 </html>
-
+```

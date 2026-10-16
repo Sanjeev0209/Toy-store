@@ -183,7 +183,7 @@ h2{
 }
 p{
     font-family: "Baloo Bhaina 2", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
     padding: none;
 }
@@ -1028,11 +1028,13 @@ h4, p{
             font-weight: bold;
         }
         .old-price {
-            color: #999;
+            color: black;
             text-decoration: line-through;
             font-size: 14px;
         }
-        /* ================================
+
+
+    /* ================================
            CART POPUP
         ================================= */
         .cart-popup {
@@ -1069,7 +1071,7 @@ h4, p{
             cursor: pointer;
         }
         .cart-items {
-            max-height: 50vh;
+            max-height: 40vh;
             overflow-y: auto;
             padding: 10px 15px;
         }
@@ -1143,6 +1145,7 @@ h4, p{
         .cart-footer {
             padding: 18px;
             border-top: 1px solid #ddd;
+            height: auto;
         }
         .cart-total {
             display: flex;
