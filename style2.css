@@ -708,7 +708,7 @@ header, .headfix{
 .menulist{
     justify-content: space-between;
     display: flex;
-    width: 500px;
+    width: 400px;
 }
 .menulist a{
     text-decoration: none;
@@ -863,7 +863,7 @@ footer{
         display: none;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .menulist{
         display: none;
     }
@@ -893,35 +893,108 @@ footer{
         padding: 25px;
     } 
 }
-@media (max-width: 400px) {
+@media (max-width: 768px) {
     .logo img{
-        width: 80px;
+        width: 100px;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 768px) {
     .logo{
-        padding: 9px;
+        padding: 10px;
     }
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .search input{
         width: 140px;
     }
+    .search{
+        width: 200px;
+    }
+    .navbar{
+        padding-right: 5px;
+    }
 }
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
     .search{
         width: 200px;
         justify-content: center;
     }
-}
-@media screen and (width <= 1024px) {
+} */
+@media screen and (width <= 1200px) {
     .menulist{
         max-width: 300px;
     }
+    .logo img{
+        width: 120px;
+    }
+    .hero{
+        padding-right: 0;
+    }
 }
+@media screen and (width <= 992px) {
+    .logo{
+        padding-left: 15px;
+    }
+    .hero{
+        width: 520px;
+    }
+    .herrosection{
+        font-size: 55px;
+    }
+    .section1{
+        padding-right: 20px;
+    }
+}
+
+
+@media screen and (width<=640px){
+    .hero{
+        width: 400px;
+    }
+    .herrosection{
+        font-size: 45px;
+    }
+}
+
+@media screen and (width<=500px){
+    .hero{
+        width: 300px;
+    }
+    .herrosection{
+        font-size: 36px;
+    }
+}
+
 @media screen and (width <= 400px) {
     .searchsvg{
        max-width: 50px;
+    }
+}
+
+@media screen and (width <= 400px) {
+    .logo img{
+       max-width: 80px;
+    }
+    .section4 img{
+        width: 300px;
+    }
+     .search input{
+        width: 100px;
+    }
+    .search{
+        width: 160px;
+    }
+    .products{
+        width: 250px;
+    }
+    .section8{
+        width: 350px;
+    }
+}
+
+@media screen and (width <= 400px) {
+    .nav-cart img{
+       width: 24px;
     }
 }
 /* @media (max-width: 768px) {
@@ -935,14 +1008,14 @@ footer{
         max-width: 180px;
         gap: 20px;
     }
-} */
+} */ 
 /* @media (max-width: 476px) {
     .products{
         width: 160px;
         gap: 20px;
         padding-left: 2px;
     }
-} */
+}
 @media (max-width: 476px) {
     .container-card{
         width: 170px;
@@ -953,8 +1026,10 @@ footer{
         max-width: 180px;
     }
 } */
+
 @media (max-width: 576px) {
-    .categories1, .categories2, .categories3{
+    .categories1, .categories2, .categories3
+    {
         padding: 10px 10px; 
     }
 }
@@ -1307,5 +1382,31 @@ footer{
 @media screen and (width <= 450px) {
 .section3_2 p{
     font-size: 16px;
+}
+}
+
+
+@media (max-width: 1200px) {
+    .navbar{
+        padding-left: 0;
+    }
+    .logo {
+        padding-left: 20px;
+    }
+}
+.hidebtn{
+    align-items: center;
+    display: flex;
+}
+
+@media screen and (width >= 992px) {
+.hidebtn img{
+   display: none;
+}
+}
+
+@media screen and (width <= 1024px) {
+.logo img{
+   width: 100px;
 }
 }

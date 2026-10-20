@@ -465,7 +465,7 @@ function displaySaleProducts() {
                     void qtySpan.offsetWidth;
                     qtySpan.classList.add("qty-bump");
                 }
-
+ 
                 if (priceDiv) {
                     priceDiv.textContent = "$" + (item.price * item.quantity).toFixed(2);
                     priceDiv.classList.remove("price-bump");
@@ -738,9 +738,13 @@ function displaySaleProducts() {
         displaySaleProducts(); 
         updateCartCount();
         displayCart();
-// ========================================
+
+// -------------------------------------
+
+
+// ====================================================
 //              swiper
-// ========================================
+// ====================================================
          const swiper = new Swiper(".mySwiper", {
             /* Show 2 images */
             slidesPerView: 2,
@@ -765,3 +769,33 @@ function displaySaleProducts() {
                 clickable: true
             }
         });
+
+// ----------------------------------------------------
+
+//   ===================================================================
+//            Card Animation Left - Right
+//   ===================================================================
+         const cards = document.querySelectorAll(".card");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    } else {
+                        entry.target.classList.remove("show");
+                    }
+                });
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+        cards.forEach((card, index) => {
+            // Small delay between cards
+            card.style.transitionDelay = `${(index % 4) * 100}ms`;
+            observer.observe(card);
+        });
+
+// ----------------------------------------------------------------------

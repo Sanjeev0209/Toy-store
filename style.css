@@ -228,6 +228,7 @@ p{
     flex-direction: column;
     justify-content: center;
     align-items: center; 
+    background-color: lemonchiffon;
 }
 .section3 h2{
     font-size: 38px;
@@ -240,7 +241,7 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    /* text-align: center; */
 }
 .section3_2 p:hover{
     background-color: #a855f7;
@@ -261,7 +262,7 @@ p{
 {
     display: flex;
     justify-content: space-between;
-    text-align: center;
+    /* text-align: center; */
 }
 .section8 p{
     font-size: 14px;
@@ -502,18 +503,19 @@ h4, p{
 @media screen and (width <= 786px) {
    .section4{
     grid-column: 1;
-   display: grid;
-    align-items: center;
-    align-self: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    width: 500px;
+    
+    justify-content: center;
+    
   }
 }
 @media screen and (width <= 576px) {
    .section4{
     grid-column: 1;
     display: grid;
-    width: 370px;
+    
   }
 }
 @media screen and (width <= 576px) {
@@ -523,9 +525,8 @@ h4, p{
 }
 @media screen and (width <= 567px) {
    .section4 img{
-    grid-column: 1;
-    display: grid;
-    width: 380px;
+    
+    width: 350px;
   }
 }
 @media screen and (width <= 567px) {
@@ -637,6 +638,7 @@ h4, p{
   .menu_field {
     display: none;
   }
+
 }
 @media screen and (width <= 700px) {
   .menu_search {
@@ -885,7 +887,7 @@ h4, p{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 50px;
+            /* padding: 0 50px; */
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
@@ -1288,3 +1290,30 @@ h4, p{
 
  */
 /* Cart hidden by default */
+.card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+
+            /* Initial animation position */
+            opacity: 0;
+            transform: translateX(-100px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        /* Card animation */
+        .card.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+
+
+.newsbutton input:hover{
+    border-color: #a855f7;
+}
